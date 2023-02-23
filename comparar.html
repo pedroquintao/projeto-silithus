@@ -1,86 +1,86 @@
 <!DOCTYPE html>
     <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Cadastro - Projeto Sillithus </title>
-        <link rel="stylesheet" type="text/css" href="./styles/style.css" media="">
-    </head>
-    
-    <body>
-        <header class="cabecalho">
-            <nav class="cabecalho__links">
-                <a class="cabecalho__links__link" href="index.html">HOME???</a>
-                <a class="cabecalho__links__link" href="index.html">CADASTRO</a>
-                <a class="cabecalho__links__link" href="index.html">ITENS CADASTRADOS</a>
-                <a class="cabecalho__links__link" href="comparar.html">COMPARAR</a>
-            </nav>
-        </header>
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Cadastro - Projeto Sillithus </title>
+            <link rel="stylesheet" type="text/css" href="./styles/style.css" media="">
+        </head>
         
-        <main class="conteudo">
-            <div>
-                <h1 class="conteudo__titulo">
-                    <p>Comparador de Itens</p>
-                </h1>
-            </div>
-            <form class="formulario">
-                <fieldset class="formulario__grupo">
-                    <div class="formulario__grupo__campo" id="selecao-classe">
-                        <label for="selecao-classe">Qual a sua classe?</label><br>
-                        <select class="formulario__grupo__campo__item" id="classe">
-                            <option selected disabled hidden value="">Selecione uma classe</option>
-                            <option id="classe__mago">Mago</option>
-                            <option id="classe__guerreiro">Guerreiro</option>
-                            <option id="classe__xama">Xamã</option>
-                            <option id="classe__druida">Druida</option>
-                            <option id="classe__paladino">Paladino</option>
-                        </select>
-                    </div>
-                </fieldset>
+        <body>
+            <header class="cabecalho">
+                <nav class="cabecalho__links">
+                    <a class="cabecalho__links__link" href="index.html">HOME???</a>
+                    <a class="cabecalho__links__link" href="index.html">CADASTRO</a>
+                    <a class="cabecalho__links__link" href="index.html">ITENS CADASTRADOS</a>
+                    <a class="cabecalho__links__link" href="comparar.html">COMPARAR</a>
+                </nav>
+            </header>
+            
+            <main class="conteudo">
+                <div>
+                    <h1 class="conteudo__titulo">
+                        <p>Comparador de Itens</p>
+                    </h1>
+                </div>
+                <form class="formulario">
+                    <fieldset class="formulario__grupo">
+                        <div class="formulario__grupo__campo" id="selecao-classe">
+                            <label for="selecao-classe">Qual a sua classe?</label><br>
+                            <select class="formulario__grupo__campo__item" id="classe">
+                                <option selected disabled hidden value="">Selecione uma classe</option>
+                                <option id="classe__mago">Mago</option>
+                                <option id="classe__guerreiro">Guerreiro</option>
+                                <option id="classe__xama">Xamã</option>
+                                <option id="classe__druida">Druida</option>
+                                <option id="classe__paladino">Paladino</option>
+                            </select>
+                        </div>
+                    </fieldset>
 
-                <fieldset class="formulario__grupo">
-                    <div class="formulario__grupo__campo" id="selecao-slot">
-                        <label>Qual slot ele ocupa?</label><br>
-                        <label>
-                            <input class="formulario__grupo__campo__item" type="radio" name="slot" value="head">Head
-                        </label>
-                        <label>
-                            <input class="formulario__grupo__campo__item" type="radio" name="slot" value="chest">Chest
-                        </label>
-                        <label>
-                            <input class="formulario__grupo__campo__item" type="radio" name="slot" value="pants">Pants
-                        </label>
-                        <label>
-                            <input class="formulario__grupo__campo__item" type="radio" name="slot" value="boot">Boot
-                        </label>
-                    </div>
-                </fieldset>
+                    <fieldset class="formulario__grupo">
+                        <div class="formulario__grupo__campo" id="selecao-slot">
+                            <label>Qual slot ele ocupa?</label><br>
+                            <label>
+                                <input class="formulario__grupo__campo__item" type="radio" name="slot" value="head">Head
+                            </label>
+                            <label>
+                                <input class="formulario__grupo__campo__item" type="radio" name="slot" value="chest">Chest
+                            </label>
+                            <label>
+                                <input class="formulario__grupo__campo__item" type="radio" name="slot" value="pants">Pants
+                            </label>
+                            <label>
+                                <input class="formulario__grupo__campo__item" type="radio" name="slot" value="boot">Boot
+                            </label>
+                        </div>
+                    </fieldset>
 
-                <fieldset class="formulario__grupo">
-                    <div class="formulario__grupo__campo" id="selecao-atributo">
-                        <label>Qual atributo é assencial?</label><br>
-                        <label>
-                            <input class="formulario__grupo__campo__item" type="radio" name="atributo" value="forca">Força
-                        </label>
-                        <label>
-                            <input class="formulario__grupo__campo__item" type="radio" name="atributo" value="vigor">Vigor
-                        </label>
-                        <label>
-                            <input class="formulario__grupo__campo__item" type="radio" name="atributo" value="Intelecto">Intelecto
-                        </label>
-                        <label>
-                            <input class="formulario__grupo__campo__item" type="radio" name="atributo" value="Agilidade">Agilidade
-                        </label>
-                    </div>
-                </fieldset>
+                    <fieldset class="formulario__grupo">
+                        <div class="formulario__grupo__campo" id="selecao-atributo">
+                            <label>Qual atributo é assencial?</label><br>
+                            <label>
+                                <input class="formulario__grupo__campo__item" type="radio" name="atributo" value="forca">Força
+                            </label>
+                            <label>
+                                <input class="formulario__grupo__campo__item" type="radio" name="atributo" value="vigor">Vigor
+                            </label>
+                            <label>
+                                <input class="formulario__grupo__campo__item" type="radio" name="atributo" value="Intelecto">Intelecto
+                            </label>
+                            <label>
+                                <input class="formulario__grupo__campo__item" type="radio" name="atributo" value="Agilidade">Agilidade
+                            </label>
+                        </div>
+                    </fieldset>
 
-                <button class="botao-enviar" type="submit">Enviar</button>
+                    <button class="botao-enviar" type="submit">Enviar</button>
 
-            </form>
-        </main>
-    </body>
-    <footer class="rodape">
-        <p class="rodape__texto">Desenvolvido por Pitaya Cop.</p>
-    </footer>
+                </form>
+            </main>
+        </body>
+        <footer class="rodape">
+            <p class="rodape__texto">Desenvolvido por Pitaya Cop.</p>
+        </footer>
     </html>
