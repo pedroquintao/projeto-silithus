@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Projeto Sillithus </title>
+    <link rel="stylesheet" type="text/css" href="./styles/style.css" media="">
+</head>
+
+<body>
+    <header class="cabecalho">
+        <nav class="cabecalho__links">
+            <a class="cabecalho__links__link" href="index.html">HOME???</a>
+            <a class="cabecalho__links__link" href="index.html">CADASTRO</a>
+            <a class="cabecalho__links__link" href="index.html">ITENS CADASTRADOS</a>
+            <a class="cabecalho__links__link" href="comparar.html">COMPARAR</a>
+        </nav>
+    </header>
+
+    <main class="conteudo">
+        <div>
+            <h1 class="conteudo__titulo">Cadastro de Itens</h1>
+            <p class="conteudo__subtitulo">Digite o nome do item e qual o slot que ele ocupa:</p>
+            <br>
+        </div>
+
+        <form class="formulario">
+            <fieldset class="formulario__grupo">
+                <div class="formulario__conteudo__grupo__campo" id="nome">
+                    <label for="nome">Qual o Nome do item?</label><br>
+                    <input class="formulario__conteudo__grupo__campo__item" type="text" name="nome" id="nome" required>
+                </div>
+            </fieldset>
+
+            <fieldset class="formulario__grupo">
+                <div class="formulario__conteudo__grupo__campo" id="selecao-slot">
+                    <label>Qual slot ele ocupa?</label><br>
+                    <label>
+                        <input class="formulario__conteudo__grupo__campo__item" type="radio" name="slot" value="head">Head
+                    </label>
+                    <label>
+                        <input class="formulario__conteudo__grupo__campo__item" type="radio" name="slot" value="chest">Chest
+                    </label>
+                    <label>
+                        <input class="formulario__conteudo__grupo__campo__item" type="radio" name="slot" value="pants">Pants
+                    </label>
+                    <label>
+                        <input class="formulario__conteudo__grupo__campo__item" type="radio" name="slot" value="boot">Boot
+                    </label>
+                </div>
+            </fieldset>
+
+            <fieldset class="formulario__grupo">
+                <div class="formulario__conteudo__grupo__campo" id="selecao-raridade">
+                    <label for="raridade">Qual a raridade do item?</label><br>
+                    <select class="formulario__conteudo__grupo__campo__item" id="raridade">
+                        <option selected disabled hidden value="">Selecione a raridade</option>
+                        <option id="raridade__comum">Comum</option>
+                        <option id="raridade__normal">Normal</option>
+                        <option id="raridade__raro">Raro</option>
+                        <option id="raridade__epico">Épico</option>
+                        <option id="raridade__lendario">Lendário</option>
+                    </select>
+                </div>
+            </fieldset>
+
+            <fieldset class="formulario__grupo">
+                <div class="check" id="selecao-atributo">
+                    <label>Quais atributos o item possui?</label><br>
+                    <input type="checkbox" id="atributo-forca" name="atributo-forca" value="forca">
+                    <label for="atributo-forca">Força</label>
+                    <input type="checkbox" id="atributo-vigor" name="atributo-vigor" value="vigor">
+                    <label for="atributo-vigor">Vigor</label>
+                    <input type="checkbox" id="atributo-intelecto" name="atributo-intelecto" value="intelecto">
+                    <label for="atributo-intelecto">Intelecto</label>
+                    <input type="checkbox" id="atributo-agilidade" name="atributo-agilidade" value="aglidade">
+                    <label for="atributo-agilidade">Agilidade</label>
+                </div>
+            </fieldset>
+
+            <fieldset class="formulario__grupo">
+                <div class="formulario__conteudo__grupo__campo" id="texto-observacoes">
+                    <label>Observações:</label><br>
+                    <textarea class="formulario__conteudo__grupo__campo__item" id="observacoes" name="observacoes" rows="10" cols="30"></textarea>
+                </div>
+            </fieldset>
+                <button class="botao-enviar" type="submit">Enviar</button>
+        </form>
+    </main>
+</body>
+<footer class="rodape">
+    <p class="rodape__texto">Desenvolvido por Pitaya Cop.</p>
+</footer>
+</html>
