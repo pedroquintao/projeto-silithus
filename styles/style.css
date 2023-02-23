@@ -3,7 +3,7 @@
  :root {
     --fonte-principal: 'Open Sans', sans-serif;
     --cor-de-fundo: #181818;
-    --cor-cabecalho: #000000;
+    --cor-cabecalho: #101010;
     --cor-texto-primaria: #ffffff;
     --cor-texto-secundaria: #bbbbb1;
     --cor-texto-destaque1: #f7b204;
@@ -34,21 +34,21 @@
 
 body {
     background-color: var(--cor-de-fundo);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .cabecalho {
-    position: relative;
-    left: 0px;
-    top: auto;
-    width: 100%;
-    padding: 2% 2%;
+    padding: 30px;
     background-color: var(--cor-cabecalho);
+    color: var(--cor-texto-secundaria);
+    font-family: var(--fonte-principal);
 }
 
 .cabecalho__links {
     display: flex;
-    gap: 10px;
-    font-family: var(--fonte-principal);
+    gap: 2%;
 }
 
 .cabecalho__links__link {
@@ -56,7 +56,6 @@ body {
     color: var(--cor-texto-secundaria);
     font-size: 1em;
     font-weight: 600;
-    padding: 0.2% 1%;
 }
 
 .cabecalho__links__link:hover {
@@ -166,18 +165,23 @@ body {
 }
 
 .rodape {
-    position: relative;
-    left: 0px;
-    bottom: auto;
-    width: 100%;
+    position: sticky;
+    top: 100%;
+    padding: 30px;
     background-color: var(--cor-cabecalho);
-    text-align: center;
-    border:0;
-    padding: 3%;
-}
-
-.rodape__texto {
     color: var(--cor-texto-secundaria);
     font-family: var(--fonte-principal);
     font-weight: 600;
+    text-align: center;
 }
+
+/* Forma de posicionar o footer na parte 
+inferior da pagina:
+body {
+    min-height: 100vh;
+}
+
+footer {
+    position: sticky;
+    top: 100%;
+} */
