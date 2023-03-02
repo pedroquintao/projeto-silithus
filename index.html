@@ -36,18 +36,14 @@
             <fieldset class="formulario__grupo">
                 <div class="formulario__grupo__campo" id="selecao-slot">
                     <label>Qual slot ele ocupa?</label><br>
-                    <label>
-                        <input class="formulario__grupo__campo__item" type="radio" name="slot" value="head">Head
-                    </label>
-                    <label>
-                        <input class="formulario__grupo__campo__item" type="radio" name="slot" value="chest">Chest
-                    </label>
-                    <label>
-                        <input class="formulario__grupo__campo__item" type="radio" name="slot" value="pants">Pants
-                    </label>
-                    <label>
-                        <input class="formulario__grupo__campo__item" type="radio" name="slot" value="boot">Boot
-                    </label>
+                    <select class="formulario__grupo__campo__item" id="slot">
+                        <option selected disabled hidden value="">Selecione a raridade</option>
+                        <option id="slot__head">Head</option>
+                        <option id="slot__neck">Neck</option>
+                        <option id="slot__shoulder">Shoulder</option>
+                        <option id="slot__back">Back</option>
+                        <option id="slot__chest">Chest</option>
+                    </select>
                 </div>
             </fieldset>
 
