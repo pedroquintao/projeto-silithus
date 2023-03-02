@@ -1,0 +1,109 @@
+
+    class Slot {
+        head,
+        shoulder,
+        chest,
+        wrist,
+        hands,
+        waist,
+        legs,
+        feet,
+        neck,
+        back,
+        ring,
+        trinket,
+        Main hand,
+        Off hand,
+        ranged,
+        relic
+    }
+
+    class Stats {
+        int strength;
+        int agility;
+        int intelect;
+        int spirit;
+        int stamina;
+        int armor;
+        int haste;
+        int mp5;
+        int spellPower;
+        int attackPower;
+        int criticalStrikeRating;
+        int hitRating
+    }
+
+    class Rarity {
+        common,
+        uncommon,
+        rare,
+        epic,
+        legendary
+    }
+
+    class WeaponType {
+        One-handed
+        Two-handed
+        Ranged
+    }
+
+    class ArmorType {
+        Plate,
+        Mail,
+        Leather,
+        Cloth
+    }
+
+    class RelicType {
+        libram,
+        idol,
+        totem,
+        sigil
+    }
+
+    class WeaponStats {
+        int minDamage;
+        int maxDamage;
+        double speed;
+        double dps;
+
+        double getDps() {
+            return (maxDamage - minDamage)/speed;
+        }
+    }
+
+    class Item {
+        String name;
+        Slot slot;
+        Rarity rarity;
+        Stats stats;
+    }
+    
+    class Weapon : Item {
+        WeaponType type;
+        WeaponStats stats;
+    }
+
+    class Armor : Item {
+        ArmorType type;
+    }
+
+    class Jewerly : Item {
+
+    }
+
+    class Relic : Item {
+        RelicType type;
+    }
+
+    class Back : Item {
+
+    }
+
+    class Shield : Item {
+
+    }
+
+    class OffHandFrill : Item {
+
+    }
