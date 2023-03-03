@@ -1,3 +1,3 @@
-# projeto-sillithus
+# projeto-silithus
 
 Welcome to Project Silithus!
