@@ -9,12 +9,12 @@
 </head>
 
 <body>
-    <header class="cabecalho">
-        <nav class="cabecalho__links">
-            <a class="cabecalho__links__link" href="index.html">HOME</a>
-            <a class="cabecalho__links__link" href="index.html">CADASTRO</a>
-            <a class="cabecalho__links__link" href="index.html">ITENS CADASTRADOS</a>
-            <a class="cabecalho__links__link" href="comparar.html">COMPARAR</a>
+    <header class="header">
+        <nav class="header__links">
+            <a class="header__links__link" href="index.html">HOME</a>
+            <a class="header__links__link" href="index.html">REGISTER</a>
+            <a class="header__links__link" href="index.html">ITEMS</a>
+            <a class="header__links__link" href="comparar.html">COMPARE</a>
         </nav>
     </header>
 
@@ -63,7 +63,7 @@
           <fieldset class="form rarity" id="rarity">
             <label for="rarity">Rarity</label><br>
               <select class="form-rarity form__bar" id="form-rarity">
-              <option selected="" disabled="" value="" hidden="">Slot</option>
+              <option selected disabled hidden value="" >Choose rarity</option>
               <option id="rarity-common">Common</option>
               <option id="rarity-uncommon">Uncommon</option>
               <option id="rarity-rare">Rare</option>
@@ -77,48 +77,49 @@
             <label for="stats-label">Stats</label><br>
 
             <!-- Bloco da lista de checkboxes -->
-            <ul class="stats-list">
-                <li><input type="checkbox" class="stats__list____stamina" id="stats-list-stamina">
+            <ul class="stats_list">
+                <li class="list"><input type="checkbox" class="stats__list__stamina" id="stats-list-stamina">
                 <label for="stats-list-stamina">Stamina</label></li>
                 
-                <li><input type="checkbox" class="stats__list____strength" id="stats-list-strength">
+                <li class="list"><input type="checkbox" class="stats__list__strength" id="stats-list-strength">
                 <label for="stats-list-strength">Strength</label></li>
                 
-                <li><input type="checkbox" class="stats__list____agility" id="stats-list-agility">
+                <li class="list"><input type="checkbox" class="stats__list__agility" id="stats-list-agility">
                 <label for="stats-list-agility">Agility</label></li>
                 
-                <li><input type="checkbox" class="stats__list____intellect" id="stats-list-intellect">
+                <li class="list"><input type="checkbox" class="stats__list__intellect" id="stats-list-intellect">
                 <label for="stats-list-intellect">Intellect</label></li>
                 
-                <li><input type="checkbox" class="stats__list____spirit" id="stats-list-spirit">
+                <li class="list"><input type="checkbox" class="stats__list__spirit" id="stats-list-spirit">
                 <label for="stats-list-spirit">Spirit</label></li>
                 
-                <li><input type="checkbox" class="stats__list____armor" id="stats-list-armor">
+                <li class="list"><input type="checkbox" class="stats__list__armor" id="stats-list-armor">
                 <label for="stats-list-armor">Armor</label></li>
                 
-                <li><input type="checkbox" class="stats__list____haste" id="stats-list-haste">
+                <li class="list"><input type="checkbox" class="stats__list__haste" id="stats-list-haste">
                 <label for="stats-list-haste">Haste</label></li>
                 
-                <li><input type="checkbox" class="stats__list____mp5" id="stats-list-mp5">
+                <li class="list"><input type="checkbox" class="stats__list__mp5" id="stats-list-mp5">
                 <label for="stats-list-mp5">Mp5</label></li>
                 
-                <li><input type="checkbox" class="stats__list____spellpower" id="stats-list-spellpower">
+                <li class="list"><input type="checkbox" class="stats__list__spellpower" id="stats-list-spellpower">
                 <label for="stats-list-spellpower">Spellpower</label></li>
                 
-                <li><input type="checkbox" class="stats__list____attackpower" id="stats-list-attackpower">
+                <li class="list"><input type="checkbox" class="stats__list__attackpower" id="stats-list-attackpower">
                 <label for="stats-list-attackpower">Attack Power</label></li>
                 
-                <li><input type="checkbox" class="stats__list____criticalstrike" id="stats-list-criticalstrike">
+                <li class="list"><input type="checkbox" class="stats__list__criticalstrike" id="stats-list-criticalstrike">
                 <label for="stats-list-criticalstrike">Critical Strike</label></li>
                 
-                <li><input type="checkbox" class="stats__list____hitrating" id="stats-list-hitrating">
+                <li class="list"><input type="checkbox" class="stats__list__hitrating" id="stats-list-hitrating">
                 <label for="stats-list-hitrating">Hit Rating</label></li>
             </ul>
           </fieldset>
+          <button class="submit-button" type="submit"><b>Register</b></button>
         </form>
       </main>
-    <footer class="rodape">
-        <p class="rodape__texto">Desenvolvido por Pitaya Cop.</p>
+    <footer class="footer">
+        <p class="footer__text">Developed by Pitaya Cop.</p>
     </footer>
     <script></script>
 </body>
