@@ -18,72 +18,105 @@
         </nav>
     </header>
 
-    <main class="conteudo">
-        <div>
-            <h1 class="conteudo__titulo">Cadastro de Itens</h1>
-            <p class="conteudo__subtitulo">Digite o nome do item e qual o slot que ele ocupa:</p>
-            <br>
+    <main class="content">
+        <!-- Área do título -->
+        <div class="title">
+          <h1 class="main__title" id="item-registration">Item Registration</h1>
+          <p class="sub__title">Fill in the forms with the data of the item you want to register:</p>
         </div>
 
-        <form class="formulario">
-            <fieldset class="formulario__grupo">
-                <div class="formulario__grupo__campo" id="nome">
-                    <label for="nome">Qual o Nome do item?</label><br>
-                    <input class="formulario__grupo__campo__item" type="text" name="nome" id="nome" required>
-                </div>
-            </fieldset>
+        <!-- Área dos formulários -->
+        <form class="form" id="form">
 
-            <fieldset class="formulario__grupo">
-                <div class="formulario__grupo__campo" id="selecao-slot">
-                    <label>Qual slot ele ocupa?</label><br>
-                    <select class="formulario__grupo__campo__item" id="slot">
-                        <option selected disabled hidden value="">Selecione a raridade</option>
-                        <option id="slot__head">Head</option>
-                        <option id="slot__neck">Neck</option>
-                        <option id="slot__shoulder">Shoulder</option>
-                        <option id="slot__back">Back</option>
-                        <option id="slot__chest">Chest</option>
-                    </select>
-                </div>
-            </fieldset>
+          <!-- Formulário Nome   -->
+          <fieldset class="form name">
+            <label for="form-name">Name</label><br>
+            <input type="text" class="form__name form__bar" id="form-name">
+          </fieldset>
 
-            <fieldset class="formulario__grupo">
-                <div class="formulario__grupo__campo" id="selecao-raridade">
-                    <label for="raridade">Qual a raridade do item?</label><br>
-                    <select class="formulario__grupo__campo__item" id="raridade">
-                        <option selected disabled hidden value="">Selecione a raridade</option>
-                        <option id="raridade__comum">Comum</option>
-                        <option id="raridade__normal">Normal</option>
-                        <option id="raridade__raro">Raro</option>
-                        <option id="raridade__epico">Épico</option>
-                        <option id="raridade__lendario">Lendário</option>
-                    </select>
-                </div>
-            </fieldset>
+          <!-- Formulário Slot -->
+          <fieldset class="form slot" id="slot">
+            <label for="slot">Slot</label><br>
+            <select class="form-slot form__bar" id="form-slot">
+              <option selected="" disabled="" value="" hidden="">Slot</option>
+              <option id="slot-head">Head</option>
+              <option id="slot-shoulders">Shoulders</option>
+              <option id="slot-chest">Chest</option>
+              <option id="slot-wrist">Wrist</option>
+              <option id="slot-hands">Hands</option>
+              <option id="slot-waist">Waist</option>
+              <option id="slot-legs">Legs</option>
+              <option id="slot-feet">Feet</option>
+              <option id="slot-neck">Neck</option>
+              <option id="slot-back">Back</option>
+              <option id="slot-finger">Finger</option>
+              <option id="slot-trinket">Trinket</option>
+              <option id="slot-mainhand">Main-Hand</option>
+              <option id="slot-offhand">Off-Hand</option>
+              <option id="slot-ammo">Ammo</option>
+              <option id="slot-ranged">Ranged </option>
+              <option id="slot-relic">Relic</option>
+            </select>
+          </fieldset>  
 
-            <fieldset class="formulario__grupo">
-                <div class="check" id="selecao-atributo">
-                    <label>Quais atributos o item possui?</label><br>
-                    <input type="checkbox" id="atributo-forca" name="atributo-forca" value="forca">
-                    <label for="atributo-forca">Força</label>
-                    <input type="checkbox" id="atributo-vigor" name="atributo-vigor" value="vigor">
-                    <label for="atributo-vigor">Vigor</label>
-                    <input type="checkbox" id="atributo-intelecto" name="atributo-intelecto" value="intelecto">
-                    <label for="atributo-intelecto">Intelecto</label>
-                    <input type="checkbox" id="atributo-agilidade" name="atributo-agilidade" value="aglidade">
-                    <label for="atributo-agilidade">Agilidade</label>
-                </div>
-            </fieldset>
+          <!-- Formulário Raridade -->
+          <fieldset class="form rarity" id="rarity">
+            <label for="rarity">Rarity</label><br>
+              <select class="form-rarity form__bar" id="form-rarity">
+              <option selected="" disabled="" value="" hidden="">Slot</option>
+              <option id="rarity-common">Common</option>
+              <option id="rarity-uncommon">Uncommon</option>
+              <option id="rarity-rare">Rare</option>
+              <option id="rarity-epic">Epic</option>
+              <option id="rarity-legendary">Legendary</option>
+            </select>
+          </fieldset>
 
-            <fieldset class="formulario__grupo">
-                <div class="formulario__grupo__campo" id="texto-observacoes">
-                    <label>Observações:</label><br>
-                    <textarea class="formulario__grupo__campo__item" id="observacoes" name="observacoes" rows="10" cols="30"></textarea>
-                </div>
-            </fieldset>
-                <button class="botao-enviar" type="submit">Enviar</button>
+          <!-- Formulário Stats -->
+          <fieldset class="form stats" id="stats">
+            <label for="stats-label">Stats</label><br>
+
+            <!-- Bloco da lista de checkboxes -->
+            <ul class="stats-list">
+                <li><input type="checkbox" class="stats__list____stamina" id="stats-list-stamina">
+                <label for="stats-list-stamina">Stamina</label></li>
+                
+                <li><input type="checkbox" class="stats__list____strength" id="stats-list-strength">
+                <label for="stats-list-strength">Strength</label></li>
+                
+                <li><input type="checkbox" class="stats__list____agility" id="stats-list-agility">
+                <label for="stats-list-agility">Agility</label></li>
+                
+                <li><input type="checkbox" class="stats__list____intellect" id="stats-list-intellect">
+                <label for="stats-list-intellect">Intellect</label></li>
+                
+                <li><input type="checkbox" class="stats__list____spirit" id="stats-list-spirit">
+                <label for="stats-list-spirit">Spirit</label></li>
+                
+                <li><input type="checkbox" class="stats__list____armor" id="stats-list-armor">
+                <label for="stats-list-armor">Armor</label></li>
+                
+                <li><input type="checkbox" class="stats__list____haste" id="stats-list-haste">
+                <label for="stats-list-haste">Haste</label></li>
+                
+                <li><input type="checkbox" class="stats__list____mp5" id="stats-list-mp5">
+                <label for="stats-list-mp5">Mp5</label></li>
+                
+                <li><input type="checkbox" class="stats__list____spellpower" id="stats-list-spellpower">
+                <label for="stats-list-spellpower">Spellpower</label></li>
+                
+                <li><input type="checkbox" class="stats__list____attackpower" id="stats-list-attackpower">
+                <label for="stats-list-attackpower">Attack Power</label></li>
+                
+                <li><input type="checkbox" class="stats__list____criticalstrike" id="stats-list-criticalstrike">
+                <label for="stats-list-criticalstrike">Critical Strike</label></li>
+                
+                <li><input type="checkbox" class="stats__list____hitrating" id="stats-list-hitrating">
+                <label for="stats-list-hitrating">Hit Rating</label></li>
+            </ul>
+          </fieldset>
         </form>
-    </main>
+      </main>
     <footer class="rodape">
         <p class="rodape__texto">Desenvolvido por Pitaya Cop.</p>
     </footer>
