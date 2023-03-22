@@ -19,19 +19,23 @@
     </header>
 
     <main class="content">
-        <!-- Área do título -->
+
+      <!-- Área dos formulários -->
+      <section class="form-area">
+        
+        <!-- Bloco do título -->
         <div class="title">
-          <h1 class="main__title" id="item-registration">Item Registration</h1>
-          <p class="sub__title">Fill in the forms with the data of the item you want to register:</p>
+          <h1 class="title1" id="item-registration">Item Registration</h1>
+          <p class="paragraph1">Fill in the forms with the data of the item you want to register:</p>
         </div>
 
-        <!-- Área dos formulários -->
+        <!-- Bloco dos formulários -->
         <form class="form" id="form">
 
           <!-- Formulário Nome   -->
           <fieldset class="form name">
             <label for="form-name">Name</label><br>
-            <input type="text" class="form__name form__bar" id="form-name">
+            <input type="text" class="form__name form__bar" id="form-name" name="form-name">
           </fieldset>
 
           <!-- Formulário Slot -->
@@ -115,13 +119,24 @@
                 <label for="stats-list-hitrating">Hit Rating</label></li>
             </ul>
           </fieldset>
-          <button class="submit-button" type="submit"><b>Register</b></button>
+          <button class="submit__button" type="submit" id="submit-button"><b>Register</b></button>
         </form>
+      </section>
+
+      <!-- Área da lista de itens -->
+      <section class="list-area">
+        <ul class="list__item" id="list-item">
+          <li><strong class="list__item__test">Teste</strong></li>
+          <li><strong class="list__item__test">Teste</strong></li>
+          <li><strong class="list__item__test">Teste</strong></li>
+        </ul>
+      </section>
+
       </main>
     <footer class="footer">
         <p class="footer__text">Developed by Pitaya Cop.</p>
     </footer>
-    <script></script>
+    <script src="main.js"></script>
 </body>
 </html>
 

@@ -16,102 +16,105 @@
     --color-submit-button-text-hover: #f7b204;
     --color-bar-hover: #262525;
   }
-  
-  *{
-    margin: 0;
-    padding: 0;
-  }
-  
-  .header {
-    padding: 30px;
-    background-color: var(--color-background2);
-    min-width: 510;
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  padding: 30px;
+  background-color: var(--color-background2);
+  min-width: 510;
 }
 
 .header__links{
-    display: flex;
-    gap: 20px;
-    flex-wrap: nowrap;
+  display: flex;
+  gap: 20px;
+  flex-wrap: nowrap;
 }
 
 .header__links__link {
-    text-decoration: none;
-    color: var(--color-text2);
-    font-size: 1em;
-    font-weight: 600;
+  text-decoration: none;
+  color: var(--color-text2);
+  font-size: 1em;
+  font-weight: 600;
 }
 
 .header__links__link:hover {
-    color: white;
+  color: white;
 }
 
-  body{
-    background: var(--color-background1);
-    color: var(--color-text1);
-    font-family: var(--standard-font);
-    max-height: 100vh;
-  }
-  
-  .content{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 300px;
-    margin: 20px 20px;
-    border-right: 1px solid var(--color-border);
+body {
+  background: var(--color-background1);
+  color: var(--color-text1);
+  font-family: var(--standard-font);
+  max-height: 100vh;
+}
 
-  }
-  
-  .title{
-    width: 280px
-  }
+.content {
+  display: flex;
+  gap: 100px;
+  width: 300px;
+  margin: 20px 20px;
+  border-right: 1px solid var(--color-border);
+}
 
-  .main__title{
-    color: var(--color-main-title);
-  }
-  
-  .form{
-    border: 0;
-    margin: 0 0 20px 0;
-    /* background-color: red; */
-  }
-  
-  .form__bar{
-    background-color: var(--color-background1);
-    border: 1px solid var(--color-border);
-    border-radius: 4px;
-    min-width: 200px;
-    min-height: 1.5em;
-    color: var(--color-text-bar);
-  }
-  
-  .form__bar:hover{
-    background-color: var(--color-bar-hover);
-  }
+.form-area {
+  display: flex;
+  flex-direction: column;  
+  gap: 20px;
+}
 
-  #form-rarity{
-    color: var(--color-text-bar);
-  }
-  
-  .stats{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    max-width: 20vw;
-    flex-wrap: wrap;
-  }
+.title {
+  width: 280px
+}
 
-  .list{
-    color: var(--color-text-bar);
-    list-style-type: none;
-  }
+.title1 {
+  color: var(--color-main-title);
+}
 
-  .list:hover{
-    color: white;
-  }
+.form{
+  border: 0;
+  margin: 0 0 20px 0;
+  /* background-color: red; */
+}
+
+.form__bar{
+  background-color: var(--color-background1);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  min-width: 200px;
+  min-height: 1.5em;
+  color: var(--color-text-bar);
+}
+
+.form__bar:hover{
+  background-color: var(--color-bar-hover);
+}
+
+#form-rarity{
+  color: var(--color-text-bar);
+}
+
+.stats{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 20vw;
+  flex-wrap: wrap;
+}
+
+.list{ /*Substituir esse nome de classe*/
+  color: var(--color-text-bar);
+}
+
+.list:hover{/*Substituir esse nome de classe*/
+  color: white;
+}
 
 
-.submit-button {
+.submit__button {
     /* font-size: 1.2em; */
     background-color: var(--color-submit-button);
     color: var(--color-submit-button-text);
@@ -123,17 +126,37 @@
     border: 1.25px outset var(--color-submit-button-text);
 }
 
-.submit-button:hover {
+.submit__button:hover {
     background: var(--color-submit-button-hover);
     color: var(--color-submit-button-text-hover);
 }
 
-  .footer {
-    top: auto;
-    padding: 30px;
-    background-color: var(--color-background2);
-    color: var(--color-text2);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.list-area {
+  background-color: red;  
+}
+
+.list__item {
+  display: flex;
+  flex-direction: column;
+  width: 300px;    
+}
+
+li {
+  list-style-type: none;
+}
+
+.list__item__test {
+  background-color: blue;
+  padding-right: 300px;
+  list-style-type: none;
+}
+
+.footer {
+  top: auto;
+  padding: 30px;
+  background-color: var(--color-background2);
+  color: var(--color-text2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
