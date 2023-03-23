@@ -132,7 +132,7 @@ body {
 }
 
 .list-area {
-  background-color: red;  
+  /* background-color: red;   */
 }
 
 .list__item {
@@ -146,7 +146,7 @@ li {
 }
 
 .list__item__test {
-  background-color: blue;
+  /* background-color: blue; */
   padding-right: 300px;
   list-style-type: none;
 }
