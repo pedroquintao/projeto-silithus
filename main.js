@@ -1,7 +1,7 @@
 const list = document.querySelector('#list-items');
 const form = document.querySelector('#form');
 
-items = [];
+var items = [];
 
 desenhaLista(); 
 
@@ -18,6 +18,7 @@ form.addEventListener('submit', (evt) => {
     const itemRarity = evt.target.elements['form-rarity'];
 
     const currentItem = {
+        Id: items.length,
         Name: itemName,
         Slot: itemSlot,
         Rarity: itemRarity
@@ -51,10 +52,15 @@ function createItem(item) {
 
     
     list.appendChild(newList);
-    console.log(list);
+
+    console.log(items.length);
 }
 
 function deleteItem(item){
+    console.log('current item: ' + item.parentNode.dataset.name);
+    items.forEach(elt => console.log(elt));
+    items.splice(items.findIndex(elt => elt.Name.value === item.parentNode.dataset.name), 1);
+    items.forEach(elt => console.log(elt));
     item.parentNode.remove();
-    console.log(item.parentNode)
+    console.log(item.parentNode);
 }
