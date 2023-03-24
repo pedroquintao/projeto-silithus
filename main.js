@@ -27,7 +27,7 @@ form.addEventListener('submit', (evt) => {
 
     items.push(currentItem);
 
-    console.log(items)
+    // console.log(items)
     // console.log(itemName.value)
     // console.log(itemSlot.value)
     // console.log(itemRarity.value)
@@ -40,17 +40,18 @@ function createItem(item) {
     const newNameValue = document.createElement('strong')
     newNameValue.innerHTML = item.Name.value;
 
-    const newSlotValue = document.createElement('strong')
-    newSlotValue.innerHTML = item.Slot.value;
-
-    const newRarityValue = document.createElement('strong')
-    newRarityValue.innerHTML = item.Rarity.value;
-
     newList.appendChild(newNameValue);
-    newList.appendChild(newSlotValue);
-    newList.appendChild(newRarityValue);
+
+    newList.dataset.name = item.Name.value;
+    newList.dataset.slot = item.Slot.value;
+    newList.dataset.rarity = item.Rarity.value;
 
     list.appendChild(newList);
 
-    console.log(newList.innerHTML);
+    console.log(newList);
+    console.log(newList.dataset['name']);
+    console.log(newList.dataset['slot']);
+    console.log(newList.dataset['rarity']);
+
+    // console.log(newList.innerHTML);
 }
