@@ -147,11 +147,17 @@ body {
   gap: 10px;
 }
 
-.list__items__item{
-  padding: 0 150px;    
+.list__items__item {   
+  display: flex;
+  justify-content: space-around;
   border: var(--standard-border);
   border-radius: var(--standard-border-radius);
+  width: 300px;
+  gap: 20px;
+}
 
+.list__items__item:hover{
+  background-color: var(--color-bar-hover);
 }
 
 li {
