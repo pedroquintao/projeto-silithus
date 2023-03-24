@@ -26,11 +26,6 @@ form.addEventListener('submit', (evt) => {
     createItem(currentItem);
 
     items.push(currentItem);
-
-    // console.log(items)
-    // console.log(itemName.value)
-    // console.log(itemSlot.value)
-    // console.log(itemRarity.value)
 });
 
 function createItem(item) {
@@ -46,12 +41,20 @@ function createItem(item) {
     newList.dataset.slot = item.Slot.value;
     newList.dataset.rarity = item.Rarity.value;
 
+    const deleteButton = document.createElement('button');
+    deleteButton.classList.add('item__delete__button');
+    deleteButton.innerHTML = 'X';
+    deleteButton.addEventListener('click', function() {
+        deleteItem(this);
+    })
+    newList.appendChild(deleteButton);
+
+    
     list.appendChild(newList);
+    console.log(list);
+}
 
-    console.log(newList);
-    console.log(newList.dataset['name']);
-    console.log(newList.dataset['slot']);
-    console.log(newList.dataset['rarity']);
-
-    // console.log(newList.innerHTML);
+function deleteItem(item){
+    item.parentNode.remove();
+    console.log(item.parentNode)
 }
