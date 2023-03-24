@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
 :root{
-    --standard-font: 'Open Sans', sans-serif;
-
+    --standard-font: 'Open Sans', sans-serif; 
+    --standard-border-radius: 4px;
+    --standard-border: 1px solid var(--color-border);
     --color-background1: #181818;
     --color-background2: #101010;
     --color-border: #777777;
@@ -76,14 +77,13 @@ body {
 
 .form{
   border: 0;
-  margin: 0 0 20px 0;
-  /* background-color: red; */
+  margin-bottom: 20px;
 }
 
 .form__bar{
   background-color: var(--color-background1);
   border: 1px solid var(--color-border);
-  border-radius: 4px;
+  border-radius: var(--standard-border-radius);
   min-width: 200px;
   min-height: 1.5em;
   color: var(--color-text-bar);
@@ -105,11 +105,12 @@ body {
   flex-wrap: wrap;
 }
 
-.list{ /*Substituir esse nome de classe*/
+.stats__checkboxes__checkbox{ /*Substituir esse nome de classe*/
   color: var(--color-text-bar);
+  min-width: 200px;
 }
 
-.list:hover{/*Substituir esse nome de classe*/
+.stats__checkboxes__checkbox:hover{/*Substituir esse nome de classe*/
   color: white;
 }
 
@@ -131,23 +132,29 @@ body {
     color: var(--color-submit-button-text-hover);
 }
 
-.list-area {
-  /* background-color: red;   */
-}
-
-.list__item {
+.list-area{
   display: flex;
   flex-direction: column;
-  width: 300px;    
+  align-items: center;
+  gap: 10px;
+}
+
+.list__items {
+  min-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.list__items__item{
+  padding: 0 150px;    
+  border: var(--standard-border);
+  border-radius: var(--standard-border-radius);
+
 }
 
 li {
-  list-style-type: none;
-}
-
-.list__item__test {
-  /* background-color: blue; */
-  padding-right: 300px;
   list-style-type: none;
 }
 

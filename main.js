@@ -1,12 +1,12 @@
 const list = document.querySelector('#list-items');
 const form = document.querySelector('#form');
 
-itens = [];
+items = [];
 
 desenhaLista(); 
 
 function desenhaLista(){
-    itens.forEach(elt => createItem(elt))
+    items.forEach(elt => createItem(elt))
 }
 
 form.addEventListener('submit', (evt) => {
@@ -25,7 +25,9 @@ form.addEventListener('submit', (evt) => {
 
     createItem(currentItem);
 
-    // console.log(currentItem)
+    items.push(currentItem);
+
+    console.log(items)
     // console.log(itemName.value)
     // console.log(itemSlot.value)
     // console.log(itemRarity.value)
@@ -36,13 +38,13 @@ function createItem(item) {
     newList.classList.add('list__items__item')
 
     const newNameValue = document.createElement('strong')
-    newNameValue.innerHTML = "nome";
+    newNameValue.innerHTML = item.Name.value;
 
     const newSlotValue = document.createElement('strong')
-    newSlotValue.innerHTML = "slot";
+    newSlotValue.innerHTML = item.Slot.value;
 
     const newRarityValue = document.createElement('strong')
-    newRarityValue.innerHTML = "rarity";
+    newRarityValue.innerHTML = item.Rarity.value;
 
     newList.appendChild(newNameValue);
     newList.appendChild(newSlotValue);
@@ -51,6 +53,4 @@ function createItem(item) {
     list.appendChild(newList);
 
     console.log(newList.innerHTML);
-    console.log(newList);
-
 }
