@@ -3,9 +3,9 @@ const form = document.querySelector('#form');
 
 var items = [];
 
-desenhaLista(); 
+drawList(); 
 
-function desenhaLista(){
+function drawList(){
     items.forEach(elt => createItem(elt))
 }
 
@@ -27,6 +27,13 @@ form.addEventListener('submit', (evt) => {
     createItem(currentItem);
 
     items.push(currentItem);
+
+    clearForms();
+    
+
+    console.log('%cmain.js line:32 object', 'color: #007acc;', 
+    );
+    
 });
 
 function createItem(item) {
@@ -45,6 +52,7 @@ function createItem(item) {
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('item__delete__button');
     deleteButton.innerHTML = 'X';
+    console.log(deleteButton.className)
     deleteButton.addEventListener('click', function() {
         deleteItem(this);
     })
@@ -63,4 +71,10 @@ function deleteItem(item){
     items.forEach(elt => console.log(elt));
     item.parentNode.remove();
     console.log(item.parentNode);
+}
+
+function clearForms() {
+    document.querySelector("input[id='form-name'").value = "";
+    document.querySelector("select[id='form-slot'").value = "";
+    document.querySelector("select[id='form-rarity'").value = "";
 }

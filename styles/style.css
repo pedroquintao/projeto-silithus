@@ -184,3 +184,5 @@ li {
 ====================================================================================================================================
                                                 Lembrete de problemas a serem resolvidos
 ==================================================================================================================================== */
+
+/* -Alterar o padding da area do formulário e da área da lista de forma que os itens tenham um comportamento dinâmico conforme o tamanho da tela for diminuído (usar o vw no lugar de px) */
