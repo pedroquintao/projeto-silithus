@@ -5,10 +5,6 @@ var items = [];
 
 drawList(); 
 
-function drawList(){
-    items.forEach(elt => createItem(elt))
-}
-
 form.addEventListener('submit', (evt) => {
     
     evt.preventDefault();
@@ -28,13 +24,21 @@ form.addEventListener('submit', (evt) => {
 
     items.push(currentItem);
 
-    clearForms();
-    
+    localStorage.setItem("forms-data", JSON.stringify(items));
 
-    console.log('%cmain.js line:32 object', 'color: #007acc;', 
-    );
-    
+    clearForms();
+
 });
+
+function drawList(){
+    items.forEach(elt => createItem(elt))
+}
+
+function clearForms() {
+    document.querySelector("input[id='form-name'").value = "";
+    document.querySelector("select[id='form-slot'").value = "";
+    document.querySelector("select[id='form-rarity'").value = "";
+}
 
 function createItem(item) {
     const newList = document.createElement('li')
@@ -66,15 +70,8 @@ function createItem(item) {
 
 function deleteItem(item){
     console.log('current item: ' + item.parentNode.dataset.name);
-    items.forEach(elt => console.log(elt));
     items.splice(items.findIndex(elt => elt.Name.value === item.parentNode.dataset.name), 1);
-    items.forEach(elt => console.log(elt));
     item.parentNode.remove();
-    console.log(item.parentNode);
+    localStorage.setItem("forms-data", JSON.stringify(items));
 }
 
-function clearForms() {
-    document.querySelector("input[id='form-name'").value = "";
-    document.querySelector("select[id='form-slot'").value = "";
-    document.querySelector("select[id='form-rarity'").value = "";
-}
