@@ -154,9 +154,10 @@ body {
 
 .list__items__item {   
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   border: var(--standard-border);
   border-radius: var(--standard-border-radius);
+  padding-left: 20px;
   width: 300px;
   gap: 20px;
 }
