@@ -67,9 +67,9 @@ function createItem(item) {
 
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('item__delete__button');
-    deleteButton.innerHTML = 'X';
+    deleteButton.innerText = 'X';
     deleteButton.addEventListener('click', function() {
-        deleteItem(this, item.Id);
+        deleteItem(this.parentNode, item.Id);
     });
 
     newList.appendChild(deleteButton);
@@ -77,19 +77,19 @@ function createItem(item) {
     list.appendChild(newList);
 }
 
-function deleteItem(item, id){
-    console.log('current item: ' + item.parentNode.dataset.name);
-    item.parentNode.remove();
-    items.splice(items.findIndex(elt => elt.id === id), 1);
+function deleteItem(tag, id){
+    tag.remove();
+    items.splice(items.findIndex(elt => elt.Id === id), 1);
     localStorage.setItem("forms-data", JSON.stringify(items));
 }
 
+// Área de testes
 
-    document.querySelector('.clearLS').addEventListener('click', () => {
-        localStorage.clear();
-        location.reload();
-     }
-    );
+document.querySelector('.clearLS').addEventListener('click', () => {
+    localStorage.clear();
+    location.reload();
+    }
+);
     
 
 // =================================================================================================================
