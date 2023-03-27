@@ -42,7 +42,7 @@ form.addEventListener('submit', (evt) => {
 });
 
 function drawList(){
-    items.forEach(elt => createItem(elt))
+    items.forEach(elt => createItem(elt));
 }
 
 function clearForms() {
@@ -65,18 +65,21 @@ function createItem(item) {
     newList.dataset.slot = item.Slot;
     newList.dataset.rarity = item.Rarity;
 
+    newList.appendChild(addDeleteButton(item.id));
+    
+    list.appendChild(newList);
+
+    console.log('%cmain.js line:79 items.Id', 'color: #007acc;', item.Id);
+}
+function addDeleteButton(id) {
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('item__delete__button');
     deleteButton.innerText = 'X';
     deleteButton.addEventListener('click', function() {
-        deleteItem(this.parentNode, item.Id);
+        deleteItem(this.parentNode, id);
     });
-
-    newList.appendChild(deleteButton);
-    
-    list.appendChild(newList);
+    return deleteButton;
 }
-
 function deleteItem(tag, id){
     tag.remove();
     items.splice(items.findIndex(elt => elt.Id === id), 1);
@@ -96,6 +99,4 @@ document.querySelector('.clearLS').addEventListener('click', () => {
 //                                                     Next Step
 // =================================================================================================================
 
-//- Fazer o id ser fixo e se manter quando apagar ou atualziar outros itens
-
-//- Atualizar um item quando tiver o mesmo nome, ao invés de apaga-lo
+//-Criar o dropdown quando clicar nos itens, de forma que apareça num padrão próximo ao das caixas de informação dos itens do wow.
