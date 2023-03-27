@@ -66,11 +66,11 @@ function createItem(item) {
     newList.dataset.rarity = item.Rarity;
 
     newList.appendChild(addDeleteButton(item.id));
+    addDropDown(newList);
     
     list.appendChild(newList);
-
-    console.log('%cmain.js line:79 items.Id', 'color: #007acc;', item.Id);
 }
+
 function addDeleteButton(id) {
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('item__delete__button');
@@ -80,6 +80,7 @@ function addDeleteButton(id) {
     });
     return deleteButton;
 }
+
 function deleteItem(tag, id){
     tag.remove();
     items.splice(items.findIndex(elt => elt.Id === id), 1);
@@ -87,7 +88,13 @@ function deleteItem(tag, id){
 }
 
 // Área de testes
-
+function addDropDown(item) {
+    // item.classList.add('dropdown');
+    item.addEventListener('click', () => {
+        item.classList.toggle('show-dropdown');
+        console.log('%cmain.js line:96 ok', 'color: #007acc;', 'ok');
+    })
+}
 document.querySelector('.clearLS').addEventListener('click', () => {
     localStorage.clear();
     location.reload();
