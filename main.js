@@ -52,25 +52,37 @@ function clearForms() {
 }
 
 function createItem(item) {
-    const newList = document.createElement('li')
-    newList.classList.add('list__items__item')
+    const newList = document.createElement('li');
+    newList.classList.add('list__items__item');
 
-    const newNameValue = document.createElement('strong')
+    const newDiv = document.createElement('div')
+    newDiv.classList.add('list__items__item__box')
+
+    console.log('%cmain.js line:58 object', 'color: #007acc;', newDiv);
+     //Parei aqui, agora o que tem que fazer é jogar os elementos strong e button para dentro da div
+    const newNameValue = document.createElement('strong');
     newNameValue.innerHTML = item.Name;
 
-    newList.appendChild(newNameValue);
+    newDiv.appendChild(newNameValue);
+
+    newDiv.appendChild(addDeleteButton(item.id));
+
+
+    newList.appendChild(newDiv);
 
     newList.dataset.id = item.Id;
     newList.dataset.name = item.Name;
     newList.dataset.slot = item.Slot;
     newList.dataset.rarity = item.Rarity;
 
-    newList.appendChild(addDeleteButton(item.id));
+
     addDropDown(newList);
     
     list.appendChild(newList);
 }
-
+function addDropDown(item){
+    
+}
 function addDeleteButton(id) {
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('item__delete__button');
@@ -89,10 +101,27 @@ function deleteItem(tag, id){
 
 // Área de testes
 function addDropDown(item) {
-    // item.classList.add('dropdown');
+    const newDropDownList = document.createElement('ul');
+    newDropDownList.classList.add('dropdown');
+    item.appendChild(newDropDownList);
+
+    const newDropDownName = document.createElement('li');
+    newDropDownName.innerText = item.dataset.name;
+    newDropDownName.classList.add('dropdown__item');
+    newDropDownList.appendChild(newDropDownName);
+    
+    const newDropDownSlot = document.createElement('li');
+    newDropDownSlot.innerText = item.dataset.slot;
+    newDropDownSlot.classList.add('dropdown__item');
+    newDropDownList.appendChild(newDropDownSlot);
+
+    const newDropDownRarity = document.createElement('li');
+    newDropDownRarity.innerText = item.dataset.rarity;
+    newDropDownRarity.classList.add('dropdown__item');
+    newDropDownList.appendChild(newDropDownRarity);
+
     item.addEventListener('click', () => {
-        item.classList.toggle('show-dropdown');
-        console.log('%cmain.js line:96 ok', 'color: #007acc;', 'ok');
+        newDropDownList.classList.toggle('dropdown-show');
     })
 }
 document.querySelector('.clearLS').addEventListener('click', () => {
@@ -106,4 +135,6 @@ document.querySelector('.clearLS').addEventListener('click', () => {
 //                                                     Next Step
 // =================================================================================================================
 
-//-Criar o dropdown quando clicar nos itens, de forma que apareça num padrão próximo ao das caixas de informação dos itens do wow.
+//-Criar a parte do dropdown no .css
+
+//-Talvez seja necessario substituir cada <li> da lista por <ul> e colocar as innerTexts das <li>s dessa <ul> com as informações de nome, slot, raridade etc, para depois organizar o layout pelo css.

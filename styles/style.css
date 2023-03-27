@@ -5,6 +5,7 @@
     --standard-border: 1px solid var(--color-border);
     --color-background1: #181818;
     --color-background2: #101010;
+    --color-background3: #282828;
     --color-border: #777777;
     --color-main-title: #f7b204;
     --color-bar-hover: #101010;
@@ -152,7 +153,7 @@ body {
   gap: 10px;
 }
 
-.list__items__item {   
+.list__items__item__box {   
   display: flex;
   justify-content: space-between;
   border: var(--standard-border);
@@ -162,12 +163,23 @@ body {
   gap: 20px;
 }
 
-.list__items__item:hover{
+.list__items__item__box:hover{
   background-color: var(--color-bar-hover);
 }
 
 li {
   list-style-type: none;
+}
+
+.dropdown {
+  display: none;
+}
+
+.dropdown-show {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-background3);
+  border-radius: var(--standard-border-radius);
 }
 
 .footer {
