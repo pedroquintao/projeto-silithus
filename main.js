@@ -67,14 +67,12 @@ function createItem(item) {
 
     newDiv.appendChild(addDeleteButton(item.id));
 
-
     newList.appendChild(newDiv);
 
     newList.dataset.id = item.Id;
     newList.dataset.name = item.Name;
     newList.dataset.slot = item.Slot;
     newList.dataset.rarity = item.Rarity;
-
 
     addDropDown(newList);
     
@@ -88,13 +86,13 @@ function addDeleteButton(id) {
     deleteButton.classList.add('item__delete__button');
     deleteButton.innerText = 'X';
     deleteButton.addEventListener('click', function() {
-        deleteItem(this.parentNode, id);
+        deleteItem((this.parentNode), id);
     });
     return deleteButton;
 }
 
 function deleteItem(tag, id){
-    tag.remove();
+    tag.parentNode.remove();
     items.splice(items.findIndex(elt => elt.Id === id), 1);
     localStorage.setItem("forms-data", JSON.stringify(items));
 }
@@ -135,6 +133,6 @@ document.querySelector('.clearLS').addEventListener('click', () => {
 //                                                     Next Step
 // =================================================================================================================
 
-//-Criar a parte do dropdown no .css
+//-Criar a parte do dropdown no .css. Talvez terá que aprender table
 
-//-Talvez seja necessario substituir cada <li> da lista por <ul> e colocar as innerTexts das <li>s dessa <ul> com as informações de nome, slot, raridade etc, para depois organizar o layout pelo css.
+//-
