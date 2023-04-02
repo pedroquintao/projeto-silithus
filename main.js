@@ -25,6 +25,8 @@ form.addEventListener('submit', (evt) => {
         // console.log('%cmain.js line:27 EXISTE', 'color: #007acc;', 'EXISTE');
         currentItem.Id = exists.Id;
         items[items.findIndex(elt => elt.Id === currentItem.Id)] = currentItem;
+        updateItem(currentItem);
+
     }
 
     else {
@@ -37,7 +39,7 @@ form.addEventListener('submit', (evt) => {
         items.push(currentItem);
     }
     localStorage.setItem("forms-data", JSON.stringify(items));
-    
+    // drawList(); 
     clearForms();
 });
 
@@ -58,7 +60,7 @@ function createItem(item) {
     const newDiv = document.createElement('div')
     newDiv.classList.add('list__items__item__box')
 
-    console.log('%cmain.js line:58 object', 'color: #007acc;', newDiv);
+    // console.log('%cmain.js line:58 object', 'color: #007acc;', newDiv);
      //Parei aqui, agora o que tem que fazer é jogar os elementos strong e button para dentro da div
     const newNameValue = document.createElement('strong');
     newNameValue.innerHTML = item.Name;
@@ -78,6 +80,13 @@ function createItem(item) {
     
     list.appendChild(newList);
 }
+
+function updateItem(item) {
+    console.log('%cmain.js line:86 object', 'color: #007acc;', document.querySelector("[data-id='"+item.Id+"']"));
+
+    console.log('%cmain.js line:86 object', 'color: #007acc;', document.querySelector("[data-id='"+item.Id+"']").innerHTML);
+}
+
 function addDropDown(item){
     
 }
@@ -135,4 +144,21 @@ document.querySelector('.clearLS').addEventListener('click', () => {
 
 //-Criar a parte do dropdown no .css. Talvez terá que aprender table
 
-//-
+//-Area formulario        
+//-3 campos + botao
+//  - nome
+    // -slot
+    // -raridade
+    // -submit -> envia um requisição para criar um item
+        // receber uma resposta que é um status e uma msg
+
+//Area itens
+    //-criar fun. que desenha lista, envia a requisição e retorna os itens
+    //-desenhar itens na tela
+        //-em cada item, clocar botao X (delete) -> quando deletar, irá enviar o id do item.
+        //-''  ''   '',    ''     ''  Lapis (editar) -> click: preencher dados do formulario com aquele item, alterar o que eu quiser alterar e enviar. Estara o id
+
+        
+        
+
+
