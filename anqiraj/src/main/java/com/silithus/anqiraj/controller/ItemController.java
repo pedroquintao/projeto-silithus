@@ -2,13 +2,11 @@ package com.silithus.anqiraj.controller;
 
 import com.silithus.anqiraj.model.Item;
 import com.silithus.anqiraj.service.ItemService;
+import jakarta.annotation.Nonnull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,4 +26,13 @@ public class ItemController {
         return new ResponseEntity<>(itemService.findById(id), HttpStatus.OK);
     }
 
+    @PostMapping
+    public ResponseEntity<Item> create(@RequestBody Item item) {
+        return new ResponseEntity<>(itemService.create(item),HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Item> update(@PathVariable @Nonnull Long id, @RequestBody Item item) {
+        return new ResponseEntity<>(itemService.update(id, item), HttpStatus.OK);
+    }
 }

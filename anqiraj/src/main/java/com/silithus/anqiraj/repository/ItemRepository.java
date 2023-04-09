@@ -1,13 +1,11 @@
 package com.silithus.anqiraj.repository;
 
 import com.silithus.anqiraj.model.Item;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
+import java.util.Optional;
 
-@Repository
-public interface ItemRepository {
-    Item findById(Long id);
+public interface ItemRepository extends JpaRepository<Item,Long> {
+    Optional<Item> findByName(String name);
 
-    List<Item> list();
 }
