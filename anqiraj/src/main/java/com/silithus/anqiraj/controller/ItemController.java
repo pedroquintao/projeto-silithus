@@ -1,6 +1,8 @@
 package com.silithus.anqiraj.controller;
 
 import com.silithus.anqiraj.model.Item;
+import com.silithus.anqiraj.request.ItemPostRequestBody;
+import com.silithus.anqiraj.request.ItemPutRequestBody;
 import com.silithus.anqiraj.service.ItemService;
 import jakarta.annotation.Nonnull;
 import lombok.RequiredArgsConstructor;
@@ -27,12 +29,17 @@ public class ItemController {
     }
 
     @PostMapping
-    public ResponseEntity<Item> create(@RequestBody Item item) {
+    public ResponseEntity<Item> create(@RequestBody ItemPostRequestBody item) {
         return new ResponseEntity<>(itemService.create(item),HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Item> update(@PathVariable @Nonnull Long id, @RequestBody Item item) {
+    public ResponseEntity<Item> update(@PathVariable @Nonnull Long id, @RequestBody ItemPutRequestBody item) {
         return new ResponseEntity<>(itemService.update(id, item), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable @Nonnull Long id) {
+        itemService.delete(id);
     }
 }
