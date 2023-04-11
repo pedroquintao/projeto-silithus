@@ -8,6 +8,7 @@ import jakarta.annotation.Nonnull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,13 +30,13 @@ public class ItemController {
     }
 
     @PostMapping
-    public ResponseEntity<Item> create(@RequestBody ItemPostRequestBody item) {
+    public ResponseEntity<Item> create(@RequestBody @Validated ItemPostRequestBody item) {
         return new ResponseEntity<>(itemService.create(item),HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Item> update(@PathVariable @Nonnull Long id, @RequestBody ItemPutRequestBody item) {
-        return new ResponseEntity<>(itemService.update(id, item), HttpStatus.OK);
+    @PutMapping
+    public ResponseEntity<Item> update(@RequestBody @Validated ItemPutRequestBody item) {
+        return new ResponseEntity<>(itemService.update(item), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

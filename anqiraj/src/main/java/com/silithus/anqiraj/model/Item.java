@@ -21,6 +21,12 @@ public class Item {
     private Long id;
     @Column(unique = true, nullable = false)
     private String name;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "slot", nullable = false)
+    private SlotEnum slot;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "rarity", nullable = false)
+    private RarityEnum rarity;
 
     @Override
     public boolean equals(Object o) {
