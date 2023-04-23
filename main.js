@@ -54,31 +54,22 @@ function clearForms() {
 }
 
 function createItem(item) {
-    const newList = document.createElement('li');
-    newList.classList.add('list__items__item');
 
-    const newDiv = document.createElement('div')
-    newDiv.classList.add('list__items__item__box')
+    const newItem = document.createElement('li');
+    newItem.classList.add('list__items__item');
 
-    // console.log('%cmain.js line:58 object', 'color: #007acc;', newDiv);
-     //Parei aqui, agora o que tem que fazer é jogar os elementos strong e button para dentro da div
-    const newNameValue = document.createElement('strong');
-    newNameValue.innerHTML = item.Name;
+    const newItemHtml =    `<li class="list__items__item" data-id="${item.Id}" data-name="${item.Name}" data-slot="${item.Slot}" data-rarity="${item.Rarity}">
+                            <div class="list__items__item__box">
+                                <strong>${item.Name}</strong> 
+                                <button class="item__delete__button">X</button>                 
+                            </div>
+                        </li>`;
+    newItem.innerHTML = newItemHtml;
 
-    newDiv.appendChild(newNameValue);
-
-    newDiv.appendChild(addDeleteButton(item.id));
-
-    newList.appendChild(newDiv);
-
-    newList.dataset.id = item.Id;
-    newList.dataset.name = item.Name;
-    newList.dataset.slot = item.Slot;
-    newList.dataset.rarity = item.Rarity;
-
-    addDropDown(newList);
+    addDropDown(newItem);
     
-    list.appendChild(newList);
+    list.appendChild(newItem);
+    // list.innerHTML = itemHtml;
 }
 
 function updateItem(item) {
