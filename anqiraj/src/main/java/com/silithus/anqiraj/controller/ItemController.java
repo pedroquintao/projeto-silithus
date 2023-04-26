@@ -6,6 +6,8 @@ import com.silithus.anqiraj.request.ItemPutRequestBody;
 import com.silithus.anqiraj.service.ItemService;
 import jakarta.annotation.Nonnull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -20,8 +22,8 @@ public class ItemController {
     private final ItemService itemService;
 
     @GetMapping
-    public ResponseEntity<List<Item>> list() {
-        return new ResponseEntity<>(itemService.list(),HttpStatus.OK);
+    public ResponseEntity<Page<Item>> list(Pageable pageable) {
+        return new ResponseEntity<>(itemService.list(pageable),HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

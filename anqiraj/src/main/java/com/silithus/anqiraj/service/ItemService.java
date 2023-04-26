@@ -10,6 +10,8 @@ import com.silithus.anqiraj.request.ItemPutRequestBody;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,9 +28,9 @@ public class ItemService {
                 .orElseThrow(() -> new NotFoundException("Item not found for id " + id));
     }
 
-    public List<Item> list() {
+    public Page<Item> list(Pageable pageable) {
         log.info("Listing items");
-        return repository.findAll();
+        return repository.findAll(pageable);
     }
 
     @Transactional
