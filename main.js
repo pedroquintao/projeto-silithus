@@ -1,5 +1,5 @@
-const list = document.querySelector('#list-items');
-const form = document.querySelector('#form');
+const list = document.querySelector('#list-items'); // Seleciona o elemento com id "list-items" e o armazena na constante list
+const form = document.querySelector('#form'); //Seleciona o elemento com o id "form" e o armazena na constante form
 
 var items = JSON.parse(localStorage.getItem('forms-data')) || [];
 
@@ -22,15 +22,13 @@ form.addEventListener('submit', (evt) => {
     const exists = items.find(elt => elt.Name === currentItem.Name);
 
     if(exists) {
-        // console.log('%cmain.js line:27 EXISTE', 'color: #007acc;', 'EXISTE');
         currentItem.Id = exists.Id;
         items[items.findIndex(elt => elt.Id === currentItem.Id)] = currentItem;
-        updateItem(currentItem);
+        updateItem(currentItem); //Desnecessário?
 
     }
 
     else {
-        // console.log('%cmain.js line:30 NAO EXISTE', 'color: #007acc;', 'NAO EXISTE');
         const itemId = items[items.length -1]? items[items.length -1].Id + 1 : 0;
 
         currentItem.Id = itemId;
@@ -39,7 +37,7 @@ form.addEventListener('submit', (evt) => {
         items.push(currentItem);
     }
     localStorage.setItem("forms-data", JSON.stringify(items));
-    // drawList(); 
+
     clearForms();
 });
 
@@ -54,31 +52,21 @@ function clearForms() {
 }
 
 function createItem(item) {
-    const newList = document.createElement('li');
-    newList.classList.add('list__items__item');
 
-    const newDiv = document.createElement('div')
-    newDiv.classList.add('list__items__item__box')
+    const newItem = document.createElement('div'); //NS1
 
-    // console.log('%cmain.js line:58 object', 'color: #007acc;', newDiv);
-     //Parei aqui, agora o que tem que fazer é jogar os elementos strong e button para dentro da div
-    const newNameValue = document.createElement('strong');
-    newNameValue.innerHTML = item.Name;
+    newItem.innerHTML =    `<li class="list__items__item" data-id="${item.Id}" data-name="${item.Name}" data-slot="${item.Slot}" data-rarity="${item.Rarity}">
+                            <div class="list__items__item__box">
+                                <strong>${item.Name}</strong> 
+                                <button class="item__delete__button">X</button>                 
+                            </div>
+                        </li>`;
 
-    newDiv.appendChild(newNameValue);
-
-    newDiv.appendChild(addDeleteButton(item.id));
-
-    newList.appendChild(newDiv);
-
-    newList.dataset.id = item.Id;
-    newList.dataset.name = item.Name;
-    newList.dataset.slot = item.Slot;
-    newList.dataset.rarity = item.Rarity;
-
-    addDropDown(newList);
+    console.log('%cmain.js line:66 object', 'color: #007acc;', newItem.firstChild);
+    addDropDown(newItem.firstChild);
     
-    list.appendChild(newList);
+    list.appendChild(newItem);
+    // list.innerHTML = itemHtml;
 }
 
 function updateItem(item) {
@@ -87,9 +75,6 @@ function updateItem(item) {
     console.log('%cmain.js line:86 object', 'color: #007acc;', document.querySelector("[data-id='"+item.Id+"']").innerHTML);
 }
 
-function addDropDown(item){
-    
-}
 function addDeleteButton(id) {
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('item__delete__button');
@@ -142,23 +127,6 @@ document.querySelector('.clearLS').addEventListener('click', () => {
 //                                                     Next Step
 // =================================================================================================================
 
-//-Criar a parte do dropdown no .css. Talvez terá que aprender table
-
-//-Area formulario        
-//-3 campos + botao
-//  - nome
-    // -slot
-    // -raridade
-    // -submit -> envia um requisição para criar um item
-        // receber uma resposta que é um status e uma msg
-
-//Area itens
-    //-criar fun. que desenha lista, envia a requisição e retorna os itens
-    //-desenhar itens na tela
-        //-em cada item, clocar botao X (delete) -> quando deletar, irá enviar o id do item.
-        //-''  ''   '',    ''     ''  Lapis (editar) -> click: preencher dados do formulario com aquele item, alterar o que eu quiser alterar e enviar. Estara o id
-
-        
-        
+//NS1 - Criar o elemento sem que essa linha seja necessária
 
 
