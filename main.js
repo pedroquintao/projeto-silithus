@@ -23,9 +23,7 @@ form.addEventListener('submit', (evt) => {
 
     if(exists) {
         currentItem.Id = exists.Id;
-        items[items.findIndex(elt => elt.Id === currentItem.Id)] = currentItem;
         updateItem(currentItem); //Desnecessário?
-
     }
 
     else {
@@ -37,6 +35,8 @@ form.addEventListener('submit', (evt) => {
         items.push(currentItem);
     }
     localStorage.setItem("forms-data", JSON.stringify(items));
+
+    location.reload();
 
     clearForms();
 });
@@ -85,9 +85,7 @@ function createItem(item) {
 }
 
 function updateItem(item) {
-    // console.log('%cmain.js line:86 object', 'color: #007acc;', document.querySelector("[data-id='"+item.Id+"']"));
-
-    // console.log('%cmain.js line:86 object', 'color: #007acc;', document.querySelector("[data-id='"+item.Id+"']").innerHTML);
+        items[items.findIndex(elt => elt.Id === item.Id)] = item;
 }
 
 function addDeleteButton(id) {
@@ -105,6 +103,7 @@ function deleteItem(tag, id){
     items.splice(items.findIndex(elt => elt.Id === id), 1);
     localStorage.setItem("forms-data", JSON.stringify(items));
 }
+
 
 document.querySelector('.clearLS').addEventListener('click', () => {
     localStorage.clear();
