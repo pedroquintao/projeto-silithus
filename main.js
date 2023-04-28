@@ -47,31 +47,38 @@ function drawList(){
 
 function clearForms() {
     const formsToClear = document.querySelectorAll('.form__selection')
-    console.log('%cmain.js line:50 formsToClear ANTES', 'color: #007acc;', formsToClear);
 
     formsToClear.forEach(element => {
         element.value = "";  
     });
-    console.log('%cmain.js line:50 formsToClear DEPOIS', 'color: #007acc;', formsToClear);
-
-    // document.querySelector("input[id='form-name']").value = "";
-    // document.querySelector("select[id='form-slot']").value = "";
-    // document.querySelector("select[id='form-rarity']").value = "";
 }
 
 function createItem(item) {
 
     const newItem = document.createElement('div'); //NS1
 
-    newItem.innerHTML =    `<li class="list__items__item" data-id="${item.Id}" data-name="${item.name}" data-slot="${item.slot}" data-rarity="${item.rarity}">
+    newItem.innerHTML = `<li class="list__items__item" data-id="${item.Id}" data-name="${item.name}" data-slot="${item.slot}" data-rarity="${item.rarity}">
                             <div class="list__items__item__box">
                                 <strong>${item.name}</strong> 
                                 <button class="item__delete__button">X</button>                 
                             </div>
+                            <ul class="dropdown">
+                                <li class="dropdown__item">
+                                    <p>${item.name}</p>        
+                                </ 
+                                <li class="dropdown__item">
+                                        <p>${item.slot}</p>
+                                </ 
+                                <li class="dropdown__item">
+                                    <p>${item.rarity}</p>
+                                </li>
+                            </ul>
                         </li>`;
-
-    // console.log('%cmain.js line:66 object', 'color: #007acc;', newItem.firstChild);
-    addDropDown(newItem.firstChild);
+                        
+    newItem.addEventListener('click', function() {
+        const dropDown = this.querySelector('.dropdown');
+        dropDown.classList.toggle('dropdown-show');
+    })
     
     list.appendChild(newItem);
     // list.innerHTML = itemHtml;
@@ -99,31 +106,6 @@ function deleteItem(tag, id){
     localStorage.setItem("forms-data", JSON.stringify(items));
 }
 
-// Área de testes
-function addDropDown(item) {
-    const newDropDownList = document.createElement('ul');
-    newDropDownList.classList.add('dropdown');
-    item.appendChild(newDropDownList);
-
-    const newDropDownName = document.createElement('li');
-    newDropDownName.innerText = item.dataset.name;
-    newDropDownName.classList.add('dropdown__item');
-    newDropDownList.appendChild(newDropDownName);
-    
-    const newDropDownSlot = document.createElement('li');
-    newDropDownSlot.innerText = item.dataset.slot;
-    newDropDownSlot.classList.add('dropdown__item');
-    newDropDownList.appendChild(newDropDownSlot);
-
-    const newDropDownRarity = document.createElement('li');
-    newDropDownRarity.innerText = item.dataset.rarity;
-    newDropDownRarity.classList.add('dropdown__item');
-    newDropDownList.appendChild(newDropDownRarity);
-
-    item.addEventListener('click', () => {
-        newDropDownList.classList.toggle('dropdown-show');
-    })
-}
 document.querySelector('.clearLS').addEventListener('click', () => {
     localStorage.clear();
     location.reload();
