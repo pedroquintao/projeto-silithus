@@ -15,13 +15,13 @@ form.addEventListener('submit', (evt) => {
 
     const inputItem = createInputItem(inputName, inputSlot, inputRarity);
 
-    console.log('%cmain.js line:18 inputItem', 'color: #007acc;', inputName);
     
-    const exists = items.find(elt => elt.name === inputItem.name);
-
-    if(exists) {
-        inputItem.Id = exists.Id;
+    if(checkItemExistence(inputItem.name)) {
+        const existendItem = checkItemExistence(inputItem.name);
+        inputItem.Id = existendItem.Id;
         updateItem(inputItem);
+        console.log('%cmain.js line:18 inputItem', 'color: #007acc;', existendItem);
+
     }
 
     else {
@@ -50,6 +50,10 @@ function createInputItem(inputName, inputSlot, inputRarity) {
         slot: inputSlot.value,
         rarity: inputRarity.value            
         };
+};
+
+function checkItemExistence(name) {
+    return items.find(elt => elt.name === name);
 };
 
 function clearForms() {
