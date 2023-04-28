@@ -17,21 +17,24 @@ form.addEventListener('submit', (evt) => {
 
     
     if(checkItemExistence(inputItem.name)) {
-        const existendItem = checkItemExistence(inputItem.name);
-        inputItem.Id = existendItem.Id;
-        updateItem(inputItem);
-        console.log('%cmain.js line:18 inputItem', 'color: #007acc;', existendItem);
 
+        const existendItem = checkItemExistence(inputItem.name); //verificar se o nome dessa constante está correto
+        inputItem.Id = existendItem.Id;
+
+        updateItem(inputItem);
     }
 
     else {
-        const itemId = items[items.length -1]? items[items.length -1].Id + 1 : 0;
 
+        const itemId = checkLastItemId();
         inputItem.Id = itemId;
+
         createItem(inputItem);
 
         items.push(inputItem);
+
     }
+
     localStorage.setItem("forms-data", JSON.stringify(items));
 
     location.reload();
@@ -55,6 +58,10 @@ function createInputItem(inputName, inputSlot, inputRarity) {
 function checkItemExistence(name) {
     return items.find(elt => elt.name === name);
 };
+
+function checkLastItemId() {
+    return items[items.length -1]? items[items.length -1].Id + 1 : 0;
+}
 
 function clearForms() {
     const formsToClear = document.querySelectorAll('.form__selection')
