@@ -14,12 +14,12 @@ form.addEventListener('submit', (evt) => {
     const itemRarity = evt.target.elements['form-rarity'];
 
     const currentItem = {
-        Name: itemName.value,
-        Slot: itemSlot.value,
-        Rarity: itemRarity.value
+        name: itemName.value,
+        slot: itemSlot.value,
+        rarity: itemRarity.value
     };
     
-    const exists = items.find(elt => elt.Name === currentItem.Name);
+    const exists = items.find(elt => elt.name === currentItem.name);
 
     if(exists) {
         currentItem.Id = exists.Id;
@@ -46,23 +46,31 @@ function drawList(){
 }
 
 function clearForms() {
-    document.querySelector("input[id='form-name']").value = "";
-    document.querySelector("select[id='form-slot']").value = "";
-    document.querySelector("select[id='form-rarity']").value = "";
+    const formsToClear = document.querySelectorAll('.form__selection')
+    console.log('%cmain.js line:50 formsToClear ANTES', 'color: #007acc;', formsToClear);
+
+    formsToClear.forEach(element => {
+        element.value = "";  
+    });
+    console.log('%cmain.js line:50 formsToClear DEPOIS', 'color: #007acc;', formsToClear);
+
+    // document.querySelector("input[id='form-name']").value = "";
+    // document.querySelector("select[id='form-slot']").value = "";
+    // document.querySelector("select[id='form-rarity']").value = "";
 }
 
 function createItem(item) {
 
     const newItem = document.createElement('div'); //NS1
 
-    newItem.innerHTML =    `<li class="list__items__item" data-id="${item.Id}" data-name="${item.Name}" data-slot="${item.Slot}" data-rarity="${item.Rarity}">
+    newItem.innerHTML =    `<li class="list__items__item" data-id="${item.Id}" data-name="${item.name}" data-slot="${item.slot}" data-rarity="${item.rarity}">
                             <div class="list__items__item__box">
-                                <strong>${item.Name}</strong> 
+                                <strong>${item.name}</strong> 
                                 <button class="item__delete__button">X</button>                 
                             </div>
                         </li>`;
 
-    console.log('%cmain.js line:66 object', 'color: #007acc;', newItem.firstChild);
+    // console.log('%cmain.js line:66 object', 'color: #007acc;', newItem.firstChild);
     addDropDown(newItem.firstChild);
     
     list.appendChild(newItem);
@@ -70,9 +78,9 @@ function createItem(item) {
 }
 
 function updateItem(item) {
-    console.log('%cmain.js line:86 object', 'color: #007acc;', document.querySelector("[data-id='"+item.Id+"']"));
+    // console.log('%cmain.js line:86 object', 'color: #007acc;', document.querySelector("[data-id='"+item.Id+"']"));
 
-    console.log('%cmain.js line:86 object', 'color: #007acc;', document.querySelector("[data-id='"+item.Id+"']").innerHTML);
+    // console.log('%cmain.js line:86 object', 'color: #007acc;', document.querySelector("[data-id='"+item.Id+"']").innerHTML);
 }
 
 function addDeleteButton(id) {
