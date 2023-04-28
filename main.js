@@ -9,30 +9,28 @@ form.addEventListener('submit', (evt) => {
     
     evt.preventDefault();
     
-    const itemName = evt.target.elements['form-name'];
-    const itemSlot = evt.target.elements['form-slot'];
-    const itemRarity = evt.target.elements['form-rarity'];
+    const inputName = evt.target.elements['form-name'];
+    const inputSlot = evt.target.elements['form-slot'];
+    const inputRarity = evt.target.elements['form-rarity'];
 
-    const currentItem = {
-        name: itemName.value,
-        slot: itemSlot.value,
-        rarity: itemRarity.value
-    };
+    const inputItem = createInputItem(inputName, inputSlot, inputRarity);
+
+    console.log('%cmain.js line:18 inputItem', 'color: #007acc;', inputName);
     
-    const exists = items.find(elt => elt.name === currentItem.name);
+    const exists = items.find(elt => elt.name === inputItem.name);
 
     if(exists) {
-        currentItem.Id = exists.Id;
-        updateItem(currentItem); //Desnecessário?
+        inputItem.Id = exists.Id;
+        updateItem(inputItem);
     }
 
     else {
         const itemId = items[items.length -1]? items[items.length -1].Id + 1 : 0;
 
-        currentItem.Id = itemId;
-        createItem(currentItem);
+        inputItem.Id = itemId;
+        createItem(inputItem);
 
-        items.push(currentItem);
+        items.push(inputItem);
     }
     localStorage.setItem("forms-data", JSON.stringify(items));
 
@@ -44,6 +42,15 @@ form.addEventListener('submit', (evt) => {
 function drawList(){
     items.forEach(elt => createItem(elt));
 }
+
+function createInputItem(inputName, inputSlot, inputRarity) {
+
+    return {
+        name: inputName.value,
+        slot: inputSlot.value,
+        rarity: inputRarity.value            
+        };
+};
 
 function clearForms() {
     const formsToClear = document.querySelectorAll('.form__selection')
@@ -81,7 +88,6 @@ function createItem(item) {
     })
     
     list.appendChild(newItem);
-    // list.innerHTML = itemHtml;
 }
 
 function updateItem(item) {
@@ -117,5 +123,7 @@ document.querySelector('.clearLS').addEventListener('click', () => {
 // =================================================================================================================
 
 //NS1 - Criar o elemento sem que essa linha seja necessária
+
+//refatorar a criação do inputItem
 
 
