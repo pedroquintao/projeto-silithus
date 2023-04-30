@@ -158,13 +158,23 @@ body {
   justify-content: space-between;
   border: var(--standard-border);
   border-radius: var(--standard-border-radius);
-  padding-left: 20px;
   width: 300px;
-  gap: 20px;
 }
 
-.list__items__item__box:hover{
+.list__items__item__box__itemname{
+  flex-grow: 1;
+}
+
+.list__items__item__box__itemname:hover{
   background-color: var(--color-bar-hover);
+}
+
+.list__items__item__box__itemname {
+    padding-left: 20px;
+}
+
+.item__delete__button {
+  /* Fazer o estilo do botão de delete */
 }
 
 li {

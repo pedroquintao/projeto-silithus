@@ -15,26 +15,8 @@ form.addEventListener('submit', (evt) => {
 
     const inputItem = createInputItem(inputName, inputSlot, inputRarity);
 
+    uptadeOrCreateItem(inputItem);
     
-    if(checkItemExistence(inputItem.name)) {
-
-        const existendItem = checkItemExistence(inputItem.name); //verificar se o nome dessa constante está correto
-        inputItem.Id = existendItem.Id;
-
-        updateItem(inputItem);
-    }
-
-    else {
-
-        const itemId = checkLastItemId();
-        inputItem.Id = itemId;
-
-        createItem(inputItem);
-
-        items.push(inputItem);
-
-    }
-
     localStorage.setItem("forms-data", JSON.stringify(items));
 
     location.reload();
@@ -59,6 +41,28 @@ function checkItemExistence(name) {
     return items.find(elt => elt.name === name);
 };
 
+function uptadeOrCreateItem(inputItem) {
+
+    if(checkItemExistence(inputItem.name)) {
+
+        const existentItem = checkItemExistence(inputItem.name); 
+        inputItem.Id = existentItem.Id;
+
+        updateItem(inputItem);
+    }
+
+    else {
+
+        const itemId = checkLastItemId();
+        inputItem.Id = itemId;
+
+        createItem(inputItem);
+
+        items.push(inputItem);
+
+    }
+}
+
 function checkLastItemId() {
     return items[items.length -1]? items[items.length -1].Id + 1 : 0;
 }
@@ -75,9 +79,22 @@ function createItem(item) {
 
     const newItem = document.createElement('div'); //NS1
 
-    newItem.innerHTML = `<li class="list__items__item" data-id="${item.Id}" data-name="${item.name}" data-slot="${item.slot}" data-rarity="${item.rarity}">
+    addInnerHtml(newItem, item);
+
+    addDeleteButtonListener(newItem, item);
+
+    addDropDownListener(newItem, item.Id);
+
+    list.appendChild(newItem);
+}
+
+function addInnerHtml(element, item) {
+
+    element.innerHTML = `<li class="list__items__item" data-id="${item.Id}" data-name="${item.name}" data-slot="${item.slot}" data-rarity="${item.rarity}">
                             <div class="list__items__item__box">
-                                <strong>${item.name}</strong> 
+                                <div class="list__items__item__box__itemname">
+                                    <strong class="list__items__item__box__itemname"__name>${item.name}</strong>
+                                </div>
                                 <button class="item__delete__button">X</button>                 
                             </div>
                             <ul class="dropdown">
@@ -92,35 +109,38 @@ function createItem(item) {
                                 </li>
                             </ul>
                         </li>`;
-                        
-    newItem.addEventListener('click', function() {
-        const dropDown = this.querySelector('.dropdown');
+}
+
+function addDropDownListener(element, id) {
+
+    const itemClickableArea = element.querySelector('.list__items__item__box__itemname')
+
+    itemClickableArea.addEventListener('click', function() {
+        const listItem = document.querySelector(`[data-id="${id}"]`);
+        const dropDown = listItem.querySelector('.dropdown')
+        console.log('%cmain.js line:120 dropDown', 'color: #007acc;', dropDown);
+        
         dropDown.classList.toggle('dropdown-show');
+        console.log('%cmain.js line:99 this.item__delete__button', 'color: #007acc;', this.querySelector('.item__delete__button'));
     })
-    
-    list.appendChild(newItem);
 }
 
 function updateItem(item) {
         items[items.findIndex(elt => elt.Id === item.Id)] = item;
 }
 
-function addDeleteButton(id) {
-    const deleteButton = document.createElement('button');
-    deleteButton.classList.add('item__delete__button');
-    deleteButton.innerText = 'X';
+function addDeleteButtonListener(element, item) {
+
+    const deleteButton = element.querySelector('.item__delete__button');
+
     deleteButton.addEventListener('click', function() {
-        deleteItem((this.parentNode), id);
-    });
-    return deleteButton;
+        const deleteButtonParent = this.parentNode;
+        deleteButtonParent.parentNode.remove();
+        items.splice(items.findIndex(elt => elt.Id === item.Id), 1);
+        localStorage.setItem("forms-data", JSON.stringify(items));
+        console.log('%cmain.js line:106 this.parentNode', 'color: #007acc;', this.closest('li'));
+    })
 }
-
-function deleteItem(tag, id){
-    tag.parentNode.remove();
-    items.splice(items.findIndex(elt => elt.Id === id), 1);
-    localStorage.setItem("forms-data", JSON.stringify(items));
-}
-
 
 document.querySelector('.clearLS').addEventListener('click', () => {
     localStorage.clear();
