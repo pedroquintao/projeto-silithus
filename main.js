@@ -5,27 +5,34 @@ var items = JSON.parse(localStorage.getItem('forms-data')) || [];
 
 drawList(); 
 
-form.addEventListener('submit', (evt) => {
-    
-    evt.preventDefault();
-    
-    const inputName = evt.target.elements['form-name'];
-    const inputSlot = evt.target.elements['form-slot'];
-    const inputRarity = evt.target.elements['form-rarity'];
+addSubimitListener(form);
 
-    const inputItem = createInputItem(inputName, inputSlot, inputRarity);
-
-    uptadeOrCreateItem(inputItem);
-    
-    localStorage.setItem("forms-data", JSON.stringify(items));
-
-    location.reload();
-
-    clearForms();
-});
+addClearLSButtonListener();
 
 function drawList(){
     items.forEach(elt => createItem(elt));
+}
+
+function addSubimitListener(forms) {
+
+    forms.addEventListener('submit', (evt) => {
+        
+        evt.preventDefault();
+        
+        const inputName = evt.target.elements['form-name'];
+        const inputSlot = evt.target.elements['form-slot'];
+        const inputRarity = evt.target.elements['form-rarity'];
+    
+        const inputItem = createInputItem(inputName, inputSlot, inputRarity);
+    
+        uptadeOrCreateItem(inputItem);
+        
+        localStorage.setItem("forms-data", JSON.stringify(items));
+    
+        location.reload();
+    
+        clearForms();
+    });
 }
 
 function createInputItem(inputName, inputSlot, inputRarity) {
@@ -142,19 +149,20 @@ function addDeleteButtonListener(element, item) {
     })
 }
 
-document.querySelector('.clearLS').addEventListener('click', () => {
-    localStorage.clear();
-    location.reload();
-    }
-);
+function addClearLSButtonListener() {
+    
+    document.querySelector('.clearLS').addEventListener('click', () => {
+        localStorage.clear();
+        location.reload();
+        }
+    );
+}
     
 
 // =================================================================================================================
 //                                                     Next Step
 // =================================================================================================================
 
-//NS1 - Criar o elemento sem que essa linha seja necessária
-
-//refatorar a criação do inputItem
+//-Refatorar o primeiro addEventListener(), criar uma função para executá-lo
 
 
