@@ -44,31 +44,31 @@ function createInputItem(inputName, inputSlot, inputRarity) {
         };
 };
 
+function uptadeOrCreateItem(inputItem) {
+    
+    if(checkItemExistence(inputItem.name)) {
+        
+        const existentItem = checkItemExistence(inputItem.name); 
+        inputItem.Id = existentItem.Id;
+        
+        updateItem(inputItem);
+    }
+    
+    else {
+        
+        const itemId = checkLastItemId();
+        inputItem.Id = itemId;
+        
+        createItem(inputItem);
+        
+        items.push(inputItem);
+        
+    }
+}
+
 function checkItemExistence(name) {
     return items.find(elt => elt.name === name);
 };
-
-function uptadeOrCreateItem(inputItem) {
-
-    if(checkItemExistence(inputItem.name)) {
-
-        const existentItem = checkItemExistence(inputItem.name); 
-        inputItem.Id = existentItem.Id;
-
-        updateItem(inputItem);
-    }
-
-    else {
-
-        const itemId = checkLastItemId();
-        inputItem.Id = itemId;
-
-        createItem(inputItem);
-
-        items.push(inputItem);
-
-    }
-}
 
 function checkLastItemId() {
     return items[items.length -1]? items[items.length -1].Id + 1 : 0;
@@ -84,7 +84,9 @@ function clearForms() {
 
 function createItem(item) {
 
-    const newItem = document.createElement('div'); //NS1
+    const newItem = document.createElement('div');
+
+    newItem.classList.add('list__item__div'); //Lembrar como faz isso direito
 
     addInnerHtml(newItem, item);
 
@@ -139,13 +141,12 @@ function updateItem(item) {
 function addDeleteButtonListener(element, item) {
 
     const deleteButton = element.querySelector('.item__delete__button');
+    const targetElement = element.querySelector('.list__item__div')
 
     deleteButton.addEventListener('click', function() {
-        const deleteButtonParent = this.parentNode;
-        deleteButtonParent.parentNode.remove();
+        getTargetParentNode(this, element).remove();
         items.splice(items.findIndex(elt => elt.Id === item.Id), 1);
         localStorage.setItem("forms-data", JSON.stringify(items));
-        console.log('%cmain.js line:106 this.parentNode', 'color: #007acc;', this.closest('li'));
     })
 }
 
@@ -157,12 +158,26 @@ function addClearLSButtonListener() {
         }
     );
 }
+
+function getTargetParentNode(initialChildNode, targetParentNode) {
+
+    let currentParentNode = initialChildNode;
+
+    while(targetParentNode !== currentParentNode) {
+        currentParentNode = currentParentNode.parentNode;
+    };
+    console.log('%cmain.js line:169 currentParentNode', 'color: #007acc;', currentParentNode);
+    return currentParentNode;
+}
     
 
 // =================================================================================================================
 //                                                     Next Step
 // =================================================================================================================
 
-//-Refatorar o primeiro addEventListener(), criar uma função para executá-lo
+//-Linha 89 -> lembrar como adiciona uma classe ao elemento, depois de adicionar a classe deletTarget, passa-la como 
+// alvo da função getTargetParentNode. No momento, a getTargetParentNode() e a função addDeleteButton() estão adicionando
+//um listener no botão de deletar que está deletando ele próprio, o correto seria deletar o item da lista por completo.
+//O problema deve se resolver depois de criar a classe e passá-la como alvo.
 
 
