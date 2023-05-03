@@ -86,8 +86,6 @@ function createItem(item) {
 
     const newItem = document.createElement('div');
 
-    newItem.classList.add('list__item__div'); //Lembrar como faz isso direito
-
     addInnerHtml(newItem, item);
 
     addDeleteButtonListener(newItem, item);
@@ -127,10 +125,8 @@ function addDropDownListener(element, id) {
     itemClickableArea.addEventListener('click', function() {
         const listItem = document.querySelector(`[data-id="${id}"]`);
         const dropDown = listItem.querySelector('.dropdown')
-        console.log('%cmain.js line:120 dropDown', 'color: #007acc;', dropDown);
         
         dropDown.classList.toggle('dropdown-show');
-        console.log('%cmain.js line:99 this.item__delete__button', 'color: #007acc;', this.querySelector('.item__delete__button'));
     })
 }
 
@@ -141,7 +137,6 @@ function updateItem(item) {
 function addDeleteButtonListener(element, item) {
 
     const deleteButton = element.querySelector('.item__delete__button');
-    const targetElement = element.querySelector('.list__item__div')
 
     deleteButton.addEventListener('click', function() {
         getTargetParentNode(this, element).remove();
@@ -166,7 +161,7 @@ function getTargetParentNode(initialChildNode, targetParentNode) {
     while(targetParentNode !== currentParentNode) {
         currentParentNode = currentParentNode.parentNode;
     };
-    console.log('%cmain.js line:169 currentParentNode', 'color: #007acc;', currentParentNode);
+
     return currentParentNode;
 }
     
@@ -175,9 +170,6 @@ function getTargetParentNode(initialChildNode, targetParentNode) {
 //                                                     Next Step
 // =================================================================================================================
 
-//-Linha 89 -> lembrar como adiciona uma classe ao elemento, depois de adicionar a classe deletTarget, passa-la como 
-// alvo da função getTargetParentNode. No momento, a getTargetParentNode() e a função addDeleteButton() estão adicionando
-//um listener no botão de deletar que está deletando ele próprio, o correto seria deletar o item da lista por completo.
-//O problema deve se resolver depois de criar a classe e passá-la como alvo.
+//
 
 
