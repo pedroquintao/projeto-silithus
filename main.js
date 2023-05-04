@@ -139,7 +139,7 @@ function addDeleteButtonListener(element, item) {
     const deleteButton = element.querySelector('.item__delete__button');
 
     deleteButton.addEventListener('click', function() {
-        getTargetParentNode(this, element).remove();
+        element.remove();
         items.splice(items.findIndex(elt => elt.Id === item.Id), 1);
         localStorage.setItem("forms-data", JSON.stringify(items));
     })
@@ -154,16 +154,16 @@ function addClearLSButtonListener() {
     );
 }
 
-function getTargetParentNode(initialChildNode, targetParentNode) {
+// function getTargetParentNode(initialChildNode, targetParentNode) {
 
-    let currentParentNode = initialChildNode;
+//     let currentParentNode = initialChildNode;
 
-    while(targetParentNode !== currentParentNode) {
-        currentParentNode = currentParentNode.parentNode;
-    };
+//     while(targetParentNode !== currentParentNode) {
+//         currentParentNode = currentParentNode.parentNode;
+//     };
 
-    return currentParentNode;
-}
+//     return currentParentNode;
+// }
     
 
 // =================================================================================================================
