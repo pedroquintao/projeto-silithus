@@ -18,6 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("items")
 @RequiredArgsConstructor
+@CrossOrigin
 public class ItemController {
     private final ItemService itemService;
 

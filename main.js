@@ -29,7 +29,22 @@ function addSubimitListener(forms) {
         
         localStorage.setItem("forms-data", JSON.stringify(items));
     
-        location.reload();
+        // location.reload();
+
+        fetch('http://localhost:8080/items')
+            .then(response => response.json())
+            .then(data => console.table(data.content));
+
+        fetch('http://localhost:8080/items/6', {method: "DELETE"})
+
+        let body = {name: "ITEM 23", slot: "HEAD", rarity: "EPIC"}
+        
+        let headers = new Headers();
+        headers.set("Content-Type", "Application/json");
+
+        fetch('http://localhost:8080/items', {method: "POST", body: JSON.stringify(body), headers:headers})
+            .then(response => response.json())
+            .then(data => console.log(data));
     
         clearForms();
     });
