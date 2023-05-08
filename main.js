@@ -76,7 +76,10 @@ function addInnerHtml(element, item) {
                                 <div class="list__items__item__box__itemname">
                                     <strong class="list__items__item__box__itemname__name">${item.name}</strong>
                                 </div>
-                                <button class="item__delete__button">X</button>                 
+                                <div class="crud_buttons">
+                                <button class="item__update__button">U</button>
+                                <button class="item__delete__button">X</button>   
+                                </div>              
                             </div>
                             <ul class="dropdown">
                                 <li class="dropdown__item">
@@ -91,7 +94,11 @@ function addInnerHtml(element, item) {
                             </ul>
                         </li>`;
 }
-
+function normalizeWord(word) {
+   const wordNorm = word.toLowerCase();
+   wordNorm = wordNorm.charAt(0).toUpperCase();
+   return wordNorm
+}
 function addDropDownListener(element) {
 
     const itemClickableArea = element.querySelector('.list__items__item__box__itemname')
@@ -140,7 +147,7 @@ function postItemMethod(item, url) {
 
     fetch(url, {method: "POST", body: JSON.stringify(item), headers:headers})
     .then(response => response.json())
-    .then(data => console.log(data));
+    .then(console.log("O item " + item.name + " criado com sucesso!"));
 }
 
 function putMethod() {
@@ -148,7 +155,7 @@ function putMethod() {
 }
 
 function deleteMethod(url, id) {
-    fetch(`http://localhost:8080/items/${id}`, {method: "DELETE"})
+    fetch(url + `/${id}`, {method: "DELETE"}).then(console.log("O item com o ID: " + id + " Foi deletado"))
 }
 
 // fetch('http://localhost:8080/items/6', {method: "DELETE"})
@@ -166,11 +173,13 @@ function deleteMethod(url, id) {
 //                                                     Next Step
 // =================================================================================================================
 
-// - Implementar a função de deletar o item
+// - Implementar a função de editar o item -> Para isso, será necessário definir como será a forma de alterar os dados do item, se é via formulário etc.
 
 // - Dar um jeito de tirar o slot e rarity de caixa alta no dropdown
 
 // - Falar com Daniel: Quando deleta um item, o id dele é apagado, e quando vai criar outro item, o próximo id continua na sequencia do ultimo criado. Ex: id dos itens cadastrados: 1, 2, 3 se o item de id 3 é apagado, e um novo item é criado em sequencia, esse novo item terá o id 4 e não 3. Isso está correto? 
+
+
 
 
 //Quando usar cada método REST:
