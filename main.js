@@ -9,6 +9,7 @@ addSubimitListener(form);
 
 addClearLSButtonListener();
 
+// deleteMethod(url, 5)
 function drawList(data){
     data.forEach(elt => {createItem(elt)});
 }
@@ -21,8 +22,8 @@ function createItem(item) {
 
     addDeleteButtonListener(newItem, item);
 
-    addDropDownListener(newItem, item.Id);
-    console.log('%cmain.js line:25 item.Id', 'color: #007acc;', item.id);
+    addDropDownListener(newItem);
+
     drawItem(newItem);
     
 }
@@ -36,8 +37,6 @@ function addSubimitListener(forms) {
         const inputFormsData = evt.target.elements;
 
         const inputItem = createInputItem(inputFormsData);
-
-        localStorage.setItem("forms-data", JSON.stringify(items));        
         
         createItem(inputItem);
 
@@ -93,7 +92,7 @@ function addInnerHtml(element, item) {
                         </li>`;
 }
 
-function addDropDownListener(element, id) {
+function addDropDownListener(element) {
 
     const itemClickableArea = element.querySelector('.list__items__item__box__itemname')
 
@@ -108,10 +107,6 @@ function drawItem(item) {
 
     list.appendChild(item);
 }
-    
-// function updateItem(item) {
-//         items[items.findIndex(elt => elt.Id === item.Id)] = item;
-// }
 
 function addDeleteButtonListener(element, item) {
 
@@ -119,16 +114,14 @@ function addDeleteButtonListener(element, item) {
 
     deleteButton.addEventListener('click', function() {
         element.remove();
-        items.splice(items.findIndex(elt => elt.Id === item.Id), 1);
-        localStorage.setItem("forms-data", JSON.stringify(items));
+        deleteMethod(url, item.id);
     })
 }
 
 function addClearLSButtonListener() {
     
-    document.querySelector('.clearLS').addEventListener('click', () => {
-        localStorage.clear();
-        location.reload();
+    document.querySelector('.test').addEventListener('click', () => {
+        console.log('%cmain.js line:124 TEST', 'color: #007acc;', "TEST");
         }
     );
 }
@@ -154,8 +147,8 @@ function putMethod() {
 
 }
 
-function deleteMethod() {
-    
+function deleteMethod(url, id) {
+    fetch(`http://localhost:8080/items/${id}`, {method: "DELETE"})
 }
 
 // fetch('http://localhost:8080/items/6', {method: "DELETE"})
@@ -173,8 +166,11 @@ function deleteMethod() {
 //                                                     Next Step
 // =================================================================================================================
 
-// - Resolver problema: coloquei o método drawList() dentro do then() do metodo GET. Dessa forma o programa está desenhando os itens na tela no início, com dropdown funcionando corretamente, mas quando adiciona um item novo, não está funcionando. O ideal seria obter o array de itens do mySQL via requisição GET e salva-lo em uma array, dessa forma, fica mais fácil de trabalhar da forma que era feito antes com o localStorage
+// - Implementar a função de deletar o item
 
+// - Dar um jeito de tirar o slot e rarity de caixa alta no dropdown
+
+// - Falar com Daniel: Quando deleta um item, o id dele é apagado, e quando vai criar outro item, o próximo id continua na sequencia do ultimo criado. Ex: id dos itens cadastrados: 1, 2, 3 se o item de id 3 é apagado, e um novo item é criado em sequencia, esse novo item terá o id 4 e não 3. Isso está correto? 
 
 
 //Quando usar cada método REST:
