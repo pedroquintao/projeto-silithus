@@ -1,7 +1,9 @@
 const list = document.querySelector('#list-items'); // Seleciona o elemento com id "list-items" e o armazena na constante list
 const form = document.querySelector('#form'); //Seleciona o elemento com o id "form" e o armazena na constante form
 const url = 'http://localhost:8080/items';
-const items = getItemsMethod(url);
+// const items = getItemsMethod(url);
+
+getItemsMethod(url);
 
 addSubimitListener(form);
 
@@ -20,7 +22,7 @@ function createItem(item) {
     addDeleteButtonListener(newItem, item);
 
     addDropDownListener(newItem, item.Id);
-
+    console.log('%cmain.js line:25 item.Id', 'color: #007acc;', item.id);
     drawItem(newItem);
     
 }
@@ -34,19 +36,16 @@ function addSubimitListener(forms) {
         const inputFormsData = evt.target.elements;
 
         const inputItem = createInputItem(inputFormsData);
-        
-        // uptadeOrCreateItem(inputItem);
 
         localStorage.setItem("forms-data", JSON.stringify(items));        
         
         createItem(inputItem);
+
         postItemMethod(inputItem, url);
 
         clearForms();
     });
 }
-
-
 
 function createInputItem(inputFormsData) {
 
@@ -58,33 +57,6 @@ function createInputItem(inputFormsData) {
 
     return body;
 };
-
-// function uptadeOrCreateItem(inputItem) {
-    
-//     if(checkItemExistence(inputItem.name)) {
-        
-//         const existentItem = checkItemExistence(inputItem.name); 
-//         inputItem.Id = existentItem.Id;
-//         putMethod();
-//         updateItem(inputItem);
-//     }
-    
-//     else {
-        
-//         const itemId = checkLastItemId();
-//         inputItem.Id = itemId;
-        
-//         createItem(inputItem);
-//         postItemMethod(inputItem, url);
-        
-//     }
-// }
-
-// function checkItemExistence(name) {
-    
-//     return items.find(elt => elt.name === name);
-    
-// };
 
 function checkLastItemId() {
     return items[items.length -1]? items[items.length -1].Id + 1 : 0;
@@ -136,10 +108,10 @@ function drawItem(item) {
 
     list.appendChild(item);
 }
-
-function updateItem(item) {
-        items[items.findIndex(elt => elt.Id === item.Id)] = item;
-}
+    
+// function updateItem(item) {
+//         items[items.findIndex(elt => elt.Id === item.Id)] = item;
+// }
 
 function addDeleteButtonListener(element, item) {
 
