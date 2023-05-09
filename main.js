@@ -74,7 +74,7 @@ function addInnerHtml(element, item) {
     element.innerHTML = `<li class="list__items__item" data-id="${item.Id}" data-name="${item.name}" data-slot="${item.slot}" data-rarity="${item.rarity}">
                             <div class="list__items__item__box">
                                 <div class="list__items__item__box__itemname">
-                                    <strong class="list__items__item__box__itemname__name">${item.name}</strong>
+                                    <strong class="list__items__item__box__itemname__name">${normalizeWord(item.name)}</strong>
                                 </div>
                                 <div class="crud_buttons">
                                 <button class="item__update__button">U</button>
@@ -83,22 +83,25 @@ function addInnerHtml(element, item) {
                             </div>
                             <ul class="dropdown">
                                 <li class="dropdown__item">
-                                    <p>${item.name}</p>        
+                                    <p>${normalizeWord(item.name)}</p>        
                                 </ 
                                 <li class="dropdown__item">
-                                        <p>${item.slot}</p>
+                                        <p>${normalizeWord(item.slot)}</p>
                                 </ 
                                 <li class="dropdown__item">
-                                    <p>${item.rarity}</p>
+                                    <p>${normalizeWord(item.rarity)}</p>
                                 </li>
                             </ul>
                         </li>`;
 }
+
 function normalizeWord(word) {
-   const wordNorm = word.toLowerCase();
-   wordNorm = wordNorm.charAt(0).toUpperCase();
-   return wordNorm
+
+    const splitedWord = word.toLowerCase().split('');
+    splitedWord[0] = splitedWord[0].toUpperCase();
+    return splitedWord.join('')
 }
+
 function addDropDownListener(element) {
 
     const itemClickableArea = element.querySelector('.list__items__item__box__itemname')
@@ -158,17 +161,6 @@ function deleteMethod(url, id) {
     fetch(url + `/${id}`, {method: "DELETE"}).then(console.log("O item com o ID: " + id + " Foi deletado"))
 }
 
-// fetch('http://localhost:8080/items/6', {method: "DELETE"})
-
-// let body = {name: "ITEM 23", slot: "HEAD", rarity: "EPIC"}
-
-// let headers = new Headers();
-// headers.set("Content-Type", "Application/json");
-
-// fetch('http://localhost:8080/items', {method: "POST", body: JSON.stringify(body), headers:headers})
-// .then(response => response.json())
-// .then(data => console.log(data));
-
 // =================================================================================================================
 //                                                     Next Step
 // =================================================================================================================
@@ -178,24 +170,6 @@ function deleteMethod(url, id) {
 // - Dar um jeito de tirar o slot e rarity de caixa alta no dropdown
 
 // - Falar com Daniel: Quando deleta um item, o id dele é apagado, e quando vai criar outro item, o próximo id continua na sequencia do ultimo criado. Ex: id dos itens cadastrados: 1, 2, 3 se o item de id 3 é apagado, e um novo item é criado em sequencia, esse novo item terá o id 4 e não 3. Isso está correto? 
-
-
-
-
-//Quando usar cada método REST:
-
-//GET : - Quando for pegar todos os itens da lista para apresentar na tela (provavelmente terá que armazenar o resultado no array items, semelhante como foi feito quando se utilizava o localStorage)
-// |
-//  `-> Provavelmente será utilizado na função drawList()
-    
-
-//POST: - Quando for enviar o formulário para criar um item novo
-
-//PUT: - Quando for atualizar um item (a atualização do item pode ser tanto por um botão para atualizar o item quanto quando há uma tentativa de adicionar um item com um nome de item que já existe no banco)
-
-//DELETE - Quando for apagar um item do banco
-
-
 
 
 
