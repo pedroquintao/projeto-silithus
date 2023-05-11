@@ -38,9 +38,9 @@ function addSubimitListener(forms) {
 
         const inputItem = createInputItem(inputFormsData);
         
-        createItem(inputItem);
+        // createItem(inputItem);
 
-        postItemMethod(inputItem, url);
+        inputItem.id? postItemMethod(inputItem, url) : putMethod(inputItem, url); //fazer o put
 
         clearForms();
     });
@@ -49,6 +49,7 @@ function addSubimitListener(forms) {
 function createInputItem(inputFormsData) {
 
     const body = {
+        id: undefined,
         name: inputFormsData['form-name'].value,
         slot: inputFormsData['form-slot'].value.toUpperCase(),
         rarity: inputFormsData['form-rarity'].value.toUpperCase()            
@@ -100,6 +101,7 @@ function normalizeWord(word) {
     const splitedWord = word.toLowerCase().split('');
     splitedWord[0] = splitedWord[0].toUpperCase();
     return splitedWord.join('')
+    
 }
 
 function addDropDownListener(element) {
@@ -150,7 +152,10 @@ function postItemMethod(item, url) {
 
     fetch(url, {method: "POST", body: JSON.stringify(item), headers:headers})
     .then(response => response.json())
-    .then(console.log("O item " + item.name + " criado com sucesso!"));
+    .then(data => {
+        createItem(data);
+        console.log("O item " + item.name + " criado com sucesso!")
+    });
 }
 
 function putMethod() {
@@ -158,7 +163,7 @@ function putMethod() {
 }
 
 function deleteMethod(url, id) {
-    fetch(url + `/${id}`, {method: "DELETE"}).then(console.log("O item com o ID: " + id + " Foi deletado"))
+    fetch(url + `/${id}`, {method: "DELETE"}).then(() => console.log("O item com o ID: " + id + " Foi deletado"))
 }
 
 // =================================================================================================================
