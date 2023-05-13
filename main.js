@@ -7,7 +7,7 @@ getItemsMethod(url);
 
 addSubimitListener(form);
 
-addClearLSButtonListener();
+addTestButtonListener();
 
 // deleteMethod(url, 5)
 function drawList(data){
@@ -130,13 +130,21 @@ function addDeleteButtonListener(element, item) {
     })
 }
 
-function addClearLSButtonListener() {
+function addTestButtonListener() {
     
     document.querySelector('.test').addEventListener('click', () => {
-        console.log('%cmain.js line:124 TEST', 'color: #007acc;', "TEST");
+        const o = {
+            id: undefined,
+            name: 'nome',
+            slot: 'Head',
+            rarity: 'Rare'          
+            };
+        
+        console.log('%cmain.js line:146 f depois:', 'color: #007acc;', f);
         }
     );
 }
+
 
 function getItemsMethod(url) {
 
@@ -158,8 +166,16 @@ function postItemMethod(item, url) {
     });
 }
 
-function putMethod() {
+function putMethod(item, url) {
 
+    const json2Aray = Object.values(item)
+
+    const f = document.querySelectorAll('.form__selection');
+    f.forEach((elt, i) => {
+
+        elt.value = json2Aray[i+1];
+
+    })
 }
 
 function deleteMethod(url, id) {
