@@ -35,10 +35,10 @@ export default function buildItem(item) {
     return itemList;
 }
 
-async function drawList() {
+async function buildList() {
     const itemList = await apiRequests.getItems(url);
     itemList.content.forEach(element => list.appendChild(buildItem(element)));
-    console.log(itemList.content)
+    // console.log(itemList.content)
 }
 
-drawList();
+buildList();

@@ -30,18 +30,18 @@
         </div>
 
         <!-- Bloco dos formulários -->
-        <form class="form__area" id="form">
+        <form class="form__area" id="form" data-submit>
 
           <!-- Formulário Nome   -->
           <fieldset class="form name">
             <label for="form-name">Name</label><br>
-            <input type="text" class="form__name form__bar form__selection"  id="form-name">
+            <input type="text" class="form__name form__bar form__selection"  id="form-name" data-name>
           </fieldset>
 
           <!-- Formulário Slot -->
           <fieldset class="form slot" id="slot">
             <label for="slot">Slot</label><br>
-            <select class="form__bar form__selection" id="form-slot">
+            <select class="form__bar form__selection" id="form-slot" data-slot>
               <option selected="" disabled="" value="" hidden="">Slot</option>
               <option id="slot-head">Head</option>
               <option id="slot-shoulders">Shoulders</option>
@@ -68,7 +68,7 @@
           <!-- Formulário Raridade -->
           <fieldset class="form rarity" id="rarity">
             <label for="rarity">Rarity</label><br>
-              <select class="form-rarity form__bar form__selection" id="form-rarity">
+              <select class="form-rarity form__bar form__selection" id="form-rarity" data-rarity>
               <option selected disabled hidden value="" >Choose rarity</option>
               <option id="rarity-common">Common</option>
               <option id="rarity-uncommon">Uncommon</option>
