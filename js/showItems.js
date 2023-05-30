@@ -4,12 +4,12 @@ import normalizeWord from "./normalizeWord.js";
 const url = "http://localhost:8080/items"
 const list = document.querySelector("[data-list]");
 
-export default function buildItem(item) {
+export function buildItem(item) {
 
     const itemList = document.createElement("li");
 
     itemList.innerHTML = `
-                        <div class="list__items__item" data-id="${item.Id}" data-name="${item.name}" data-slot="${item.slot}" data-rarity="${item.rarity}">
+                        <div class="list__items__item" data-id="${item.id}" data-name="${item.name}" data-slot="${item.slot}" data-rarity="${item.rarity}">
                             <div class="list__items__item__box">
                                 <div class="list__items__item__box__itemname">
                                     <strong class="list__items__item__box__itemname__name">${normalizeWord(item.name)}</strong>
@@ -35,7 +35,7 @@ export default function buildItem(item) {
     return itemList;
 }
 
-async function buildList() {
+export async function buildList() {
     const itemList = await apiRequests.getItems(url);
     itemList.content.forEach(element => list.appendChild(buildItem(element)));
     // console.log(itemList.content)

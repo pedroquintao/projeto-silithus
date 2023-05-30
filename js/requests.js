@@ -12,13 +12,13 @@ async function getItem(url, id) {
     return data;
 }
 
-async function postItem(url, body) {
+async function postItem(url, item) {
     
     
     const response = await fetch(url, {
     method: "POST",
     headers: {"Content-type": "application/json"},
-    body: JSON.stringify({body})
+    body: JSON.stringify(item)
     })
 
     if(!response.ok) {
@@ -30,18 +30,18 @@ async function postItem(url, body) {
     return data;
 }
 
-async function editItem(url, id, body) {
+async function editItem(url, id, item) {
     const response = await fetch(url + `/${id}`, {
         method: "PUT",
         headers: {"Content-type": "application/json"},
-        body: JSON.stringify(body)
+        body: JSON.stringify(item)
     });
     const data = await response.json();
 
     return data;
 }
 
-async function deleteItem(url, id,) {
+async function deleteItem(url, id) {
     const repsonse = await fetch(url + `/${id}`, {
         method: "DELETE"
     });
