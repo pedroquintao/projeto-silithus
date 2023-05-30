@@ -20,5 +20,5 @@ async function createItem(event) {
 
     await apiRequests.postItem(url, body);
 
-    location.reload();
+    location.reload(); //É necessário atualizar a página? Ou seria melhor só adicionar o item?
 }
