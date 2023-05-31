@@ -30,12 +30,14 @@ async function postItem(url, item) {
     return data;
 }
 
-async function editItem(url, item) {
-    const itemBody = item.shift()
+async function putItem(url, item) {
+    const bodyWithoutId = item;
+    delete bodyWithoutId.id
+    
     const response = await fetch(url + `/${item.id}`, {
         method: "PUT",
         headers: {"Content-type": "application/json"},
-        body: JSON.stringify(itemBody)
+        body: JSON.stringify(bodyWithoutId)
     });
     const data = await response.json();
 
@@ -52,6 +54,6 @@ export const apiRequests = {
     getItems,
     getItem,
     postItem,
-    editItem,
+    putItem,
     deleteItem
 }

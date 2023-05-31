@@ -3,22 +3,13 @@ import normalizeWord from "./normalizeWord.js";
 
 const url = "http://localhost:8080/items";
 
-async function upgradeItem(event, item) {
-    event.preventDefault();
-    fillForms(item);
+async function updateItem(event, item) {
+    event.preventDefault(); 
 
-    const submitButton = document.querySelector("[data-submit]"); 
-    submitButton.addEventListener('submit', (event) => {
-        event.preventDefault();
-        apiRequests.editItem(url, item)
-    });
+    await apiRequests.putItem(url, item);
 
-    console.log('%cupdateItem.js line:6 object', 'color: #007acc;', submitButton);
+    // console.log('%cupdateItem.js line:6 object', 'color: #007acc;', submitButton);
     
-}
-
-export function addUpdateListener(btn, item) {
-    btn.addEventListener("click", event => upgradeItem(event, item));
 }
 
 function fillForms(data) {
@@ -27,3 +18,19 @@ function fillForms(data) {
 
     form.forEach((element, index) => element.value = normalizeWord(dataArray[index + 1]));
 }
+
+export function addUpdateListener(btn, item) {
+    btn.addEventListener("click", event => {
+        fillForms(item);
+        toggleSubmitButtonListener(event, item);
+    });
+}
+
+function toggleSubmitButtonListener(event, item) {
+    event.preventDefault();
+
+    const submitButton = document.querySelector("[data-submit]"); 
+
+    submitButton.addEventListener("submit", (evt) => updateItem(evt, item))
+}
+
