@@ -30,11 +30,12 @@ async function postItem(url, item) {
     return data;
 }
 
-async function editItem(url, id, item) {
-    const response = await fetch(url + `/${id}`, {
+async function editItem(url, item) {
+    const itemBody = item.shift()
+    const response = await fetch(url + `/${item.id}`, {
         method: "PUT",
         headers: {"Content-type": "application/json"},
-        body: JSON.stringify(item)
+        body: JSON.stringify(itemBody)
     });
     const data = await response.json();
 

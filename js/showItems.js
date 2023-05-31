@@ -1,6 +1,7 @@
 import { apiRequests } from "./requests.js";
 import normalizeWord from "./normalizeWord.js";
 import { addDeleteListener } from "./deleteItem.js";
+import { addUpdateListener } from "./updateItem.js";
 
 
 const url = "http://localhost:8080/items"
@@ -33,7 +34,12 @@ function buildItem(item) {
                             </ul>
                         </div>`;
 
-    addDeleteListener(itemList);
+    const deleteButton = itemList.querySelector("[data-delete-button]");
+    const upgradeButton = itemList.querySelector("[data-update-button]");
+
+    addDeleteListener(deleteButton, item);
+    addUpdateListener(upgradeButton, item);
+
 
     return itemList;
 }

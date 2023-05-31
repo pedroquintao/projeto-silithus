@@ -1,4 +1,5 @@
 import { apiRequests } from "./requests.js";
+import { clearForms } from "./clearForms.js";
 
 const url = "http://localhost:8080/items"
 
@@ -21,4 +22,6 @@ async function createItem(event) {
     await apiRequests.postItem(url, body);
 
     location.reload(); //É necessário atualizar a página? Ou seria melhor só adicionar o item?
+
+    clearForms();
 }
