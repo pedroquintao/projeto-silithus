@@ -1,4 +1,5 @@
 import { apiRequests } from "./requests.js";
+import { showItems } from "./showItems.js";
 
 const url = "http://localhost:8080/items"
 
@@ -7,7 +8,7 @@ async function deleteItem(event, item) {
     
     await apiRequests.deleteItem(url, item.id);
 
-    location.reload(); //É necessário atualizar a página? Ou tem alguma outra forma de fazer isso?
+    showItems.buildList();
 }
 
 export function addDeleteListener(btn, item) {

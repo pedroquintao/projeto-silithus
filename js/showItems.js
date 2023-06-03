@@ -8,7 +8,7 @@ const url = "http://localhost:8080/items"
 const list = document.querySelector("[data-list]");
 
 function buildItem(item) {
-
+    
     const itemList = document.createElement("li");
 
     itemList.innerHTML = `<div class="list__items__item" data-id="${item.id}" data-name="${item.name}" data-slot="${item.slot}" data-rarity="${item.rarity}" data-item-div>
@@ -46,10 +46,14 @@ function buildItem(item) {
 
 async function buildList() {
     const itemList = await apiRequests.getItems(url);
+    list.innerHTML = "";
     itemList.content.forEach(element => list.appendChild(buildItem(element)));
     // console.log(itemList.content)
 }
 
 buildList();
 
-export {buildItem, buildList};
+export const showItems = { 
+    buildItem, 
+    buildList 
+};

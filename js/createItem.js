@@ -1,5 +1,6 @@
 import { apiRequests } from "./requests.js";
 import { clearForms } from "./clearForms.js";
+import { showItems } from "./showItems.js";
 
 const url = "http://localhost:8080/items"
 
@@ -13,7 +14,7 @@ async function createItem(event) {
 
     const body = {
         name: document.querySelector("[data-name]").value.toUpperCase(),
-        slot: document.querySelector("[data-slot]").value.toUpperCase(),
+        slot: document.querySelector("[data-slot]").value.toUpperCase().replace("-", "_"),
         rarity: document.querySelector("[data-rarity]").value.toUpperCase()
     }
     
@@ -21,7 +22,7 @@ async function createItem(event) {
 
     await apiRequests.postItem(url, body);
 
-    location.reload(); //É necessário atualizar a página? Ou seria melhor só adicionar o item?
+    showItems.buildList();
 
     clearForms();
 }

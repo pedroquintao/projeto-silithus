@@ -13,6 +13,8 @@ async function updateItem(event, item) {
 }
 
 function fillForms(data) {
+    console.log('%cupdateItem.js line:26 item', 'color: #007acc;', data);
+
     const form = document.querySelectorAll(".form__selection");
     const dataArray = Object.values(data);
 
@@ -30,7 +32,7 @@ function toggleSubmitButtonListener(event, item) {
     event.preventDefault();
 
     const submitButton = document.querySelector("[data-submit]"); 
-
+    submitButton.removeEventListener("submit", event => createItem(event));
     submitButton.addEventListener("submit", (evt) => updateItem(evt, item))
 }
 
