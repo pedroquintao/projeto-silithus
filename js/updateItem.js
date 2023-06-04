@@ -1,28 +1,22 @@
 import { apiRequests } from "./requests.js";
 import normalizeWord from "./normalizeWord.js";
+import { submitEvent } from "./createItem.js";
 
 const url = "http://localhost:8080/items";
+const submitButton = document.getElementById("submit-button");
 
-async function updateItem(event, item) {
-    event.preventDefault(); 
-
-    await apiRequests.putItem(url, item);
-
-    // console.log('%cupdateItem.js line:6 object', 'color: #007acc;', submitButton);
-    
+async function updateItem(item) {
+    console.log('%cupdateItem.js line:10 item', 'color: #007acc;', item);
+    await apiRequests.putItem(url, item);    
 }
 
 function fillForms(data) {
-    console.log('%cupdateItem.js line:26 item', 'color: #007acc;', data);
-
     const form = document.querySelectorAll(".form__selection");
-    const dataArray = Object.values(data);
-
-    form.forEach((element, index) => element.value = normalizeWord(dataArray[index + 1]));
+    form.forEach((element, index) => element.value = normalizeWord(Object.values(data)[index + 1]));
 }
 
-export function addUpdateListener(btn, item) {
-    btn.addEventListener("click", event => {
+export function addUpdateListener(uptadeButton, item) {
+    uptadeButton.addEventListener("click", event => {
         fillForms(item);
         toggleSubmitButtonListener(event, item);
     });
@@ -30,9 +24,25 @@ export function addUpdateListener(btn, item) {
 
 function toggleSubmitButtonListener(event, item) {
     event.preventDefault();
-
-    const submitButton = document.querySelector("[data-submit]"); 
-    submitButton.removeEventListener("submit", event => createItem(event));
-    submitButton.addEventListener("submit", (evt) => updateItem(evt, item))
+    console.log('%cupdateItem.js line:28 updateEvent', 'color: #007acc;', updateEvent);
+    console.log('%cupdateItem.js line:28 item', 'color: #007acc;', item);
+    submitButton.innerHTML = "<b>Update</b>"
+    const dataSubmit = document.querySelector("[data-submit]"); 
+    const envio = {
+        item: item, 
+        data: dataSubmit
+    };
+    console.log('%cupdateItem.js line:32 envio', 'color: #007acc;', envio);
+    dataSubmit.removeEventListener("submit", submitEvent);
+    dataSubmit.addEventListener("submit", updateEvent)
 }
 
+const updateEvent = (event) => {
+    event.preventDefault();
+    console.log('%cupdateItem.js line:42 this', 'color: #007acc;', this);
+    // console.log('%cupdateItem.js line:37 this[0]', 'color: #007acc;', this[0]);
+    // updateItem(this[0]);
+    // this[1].removeEventListener();
+    // this[1].addEventListener("submit", submitEvent);
+    submitButton.innerHTML = "<b>Register</b>";
+}

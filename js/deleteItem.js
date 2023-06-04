@@ -11,6 +11,6 @@ async function deleteItem(event, item) {
     showItems.buildList();
 }
 
-export function addDeleteListener(btn, item) {
-    btn.addEventListener("click", event => deleteItem(event, item));
+export function addDeleteListener(deleteButton, item) {
+    deleteButton.addEventListener("click", event => deleteItem(event, item));
 }

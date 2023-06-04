@@ -4,12 +4,15 @@ import { showItems } from "./showItems.js";
 
 const url = "http://localhost:8080/items"
 
-const submitBtn = document.querySelector("[data-submit]");
+const dataSubmit = document.querySelector("[data-submit]");
 
-submitBtn.addEventListener("submit", event => createItem(event));
+export const submitEvent = (event) => {
+    createItem(event);
+}
+
+dataSubmit.addEventListener("submit", submitEvent);
 
 async function createItem(event) {
-    
     event.preventDefault();
 
     const body = {
@@ -18,11 +21,10 @@ async function createItem(event) {
         rarity: document.querySelector("[data-rarity]").value.toUpperCase()
     }
     
-    console.log('%ccreateItem.js line:19 body', 'color: #007acc;', body);
-
     await apiRequests.postItem(url, body);
 
     showItems.buildList();
 
     clearForms();
 }
+
