@@ -1,13 +1,24 @@
 import { apiRequests } from "./requests.js";
 import normalizeWord from "./normalizeWord.js";
 import { submitEvent } from "./createItem.js";
+import { showItems } from "./showItems.js";
+import { clearForms } from "./clearForms.js";
+
 
 const url = "http://localhost:8080/items";
 const submitButton = document.getElementById("submit-button");
+const updateEvent = (event) => {
+    updateItem(event);
+    toggleSubmitButtonListener();
+}
 
-async function updateItem(item) {
-    console.log('%cupdateItem.js line:10 item', 'color: #007acc;', item);
-    await apiRequests.putItem(url, item);    
+let submitButtonMode = "submit";
+
+export function addUpdateListener(uptadeButton, item) {
+    uptadeButton.addEventListener("click", () => {
+        fillForms(item);
+        toggleSubmitButtonListener(item);
+    });
 }
 
 function fillForms(data) {
@@ -15,34 +26,44 @@ function fillForms(data) {
     form.forEach((element, index) => element.value = normalizeWord(Object.values(data)[index + 1]));
 }
 
-export function addUpdateListener(uptadeButton, item) {
-    uptadeButton.addEventListener("click", event => {
-        fillForms(item);
-        toggleSubmitButtonListener(event, item);
-    });
-}
-
-function toggleSubmitButtonListener(event, item) {
-    event.preventDefault();
-    console.log('%cupdateItem.js line:28 updateEvent', 'color: #007acc;', updateEvent);
-    console.log('%cupdateItem.js line:28 item', 'color: #007acc;', item);
-    submitButton.innerHTML = "<b>Update</b>"
+function toggleSubmitButtonListener(item) {
+    
     const dataSubmit = document.querySelector("[data-submit]"); 
-    const envio = {
-        item: item, 
-        data: dataSubmit
-    };
-    console.log('%cupdateItem.js line:32 envio', 'color: #007acc;', envio);
-    dataSubmit.removeEventListener("submit", submitEvent);
-    dataSubmit.addEventListener("submit", updateEvent)
+
+    if(submitButtonMode === "submit") {
+        dataSubmit.removeEventListener("submit", submitEvent);
+        dataSubmit.addEventListener("submit", updateEvent)
+        submitButtonMode = "update";
+        submitButton.innerHTML = "<b>Update</b>"
+    }
+
+    else if(submitButtonMode === "update") {
+        dataSubmit.removeEventListener("submit", updateEvent);
+        dataSubmit.addEventListener("submit", submitEvent);
+        submitButtonMode = "submit";
+        submitButton.innerHTML = "<b>Register</b>";
+    }
+    dataSubmit.itemData = item;
 }
 
-const updateEvent = (event) => {
+async function updateItem(event) {
     event.preventDefault();
-    console.log('%cupdateItem.js line:42 this', 'color: #007acc;', this);
-    // console.log('%cupdateItem.js line:37 this[0]', 'color: #007acc;', this[0]);
-    // updateItem(this[0]);
-    // this[1].removeEventListener();
-    // this[1].addEventListener("submit", submitEvent);
-    submitButton.innerHTML = "<b>Register</b>";
+
+    const dataSubmit = event.target;
+    const currentFormInputData = {
+        id: dataSubmit.itemData.id,
+        name: dataSubmit.querySelector("[data-name]").value.toUpperCase(),
+        slot: dataSubmit.querySelector("[data-slot]").value.toUpperCase().replace("-", "_"),
+        rarity: dataSubmit.querySelector("[data-rarity]").value.toUpperCase()
+    }
+
+    await apiRequests.putItem(url, currentFormInputData);    
+    showItems.buildList();
+    clearForms();
 }
+
+
+
+
+
+
