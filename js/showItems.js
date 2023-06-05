@@ -35,7 +35,7 @@ function buildItem(item) {
                         </div>`;
 
     const deleteButton = itemList.querySelector("[data-delete-button]");
-    var updateButton = itemList.querySelector("[data-update-button]");
+    const updateButton = itemList.querySelector("[data-update-button]");
 
     addDeleteListener(deleteButton, item);
     addUpdateListener(updateButton, item);

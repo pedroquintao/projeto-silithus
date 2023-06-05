@@ -10,6 +10,7 @@ const submitButton = document.getElementById("submit-button");
 const updateEvent = (event) => {
     updateItem(event);
     toggleSubmitButtonListener();
+
 }
 
 let submitButtonMode = "submit";
@@ -18,6 +19,7 @@ export function addUpdateListener(uptadeButton, item) {
     uptadeButton.addEventListener("click", () => {
         fillForms(item);
         toggleSubmitButtonListener(item);
+        toggleHighlightMode(item);
     });
 }
 
@@ -44,6 +46,18 @@ function toggleSubmitButtonListener(item) {
         submitButton.innerHTML = "<b>Register</b>";
     }
     dataSubmit.itemData = item;
+}
+function toggleHighlightMode(item) {
+    const itemBar = document.querySelector(`[data-id="${item.id}"]`)
+    const formBars = document.querySelectorAll(".form__bar");
+    const highlightElements = [itemBar];
+    formBars.forEach(element => highlightElements.push(element));
+    console.log('%cupdateItem.js line:55 highlightElements1', 'color: #007acc;', highlightElements);
+    highlightElements.forEach(element => element.classList.toggle("highlight"));
+    console.log('%cupdateItem.js line:55 highlightElements2', 'color: #007acc;', highlightElements);
+    highlightElements.forEach(element => element.classList.toggle("highlight"));
+    console.log('%cupdateItem.js line:55 highlightElements3', 'color: #007acc;', highlightElements);
+
 }
 
 async function updateItem(event) {
