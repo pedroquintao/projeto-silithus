@@ -23,7 +23,7 @@ export function addUpdateListener(uptadeButton, item) {
 
 function fillForms(data) {
     const form = document.querySelectorAll(".form__selection");
-    form.forEach((element, index) => element.value = normalizeWord(Object.values(data)[index + 1]));
+    form.forEach((element, index) => element.value = normalizeWord(Object.values(data)[index + 1])); //Adicionar ao guia.js
 }
 
 function toggleSubmitButtonListener(item) {

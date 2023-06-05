@@ -8,7 +8,7 @@ const dataSubmit = document.querySelector("[data-submit]");
 
 export const submitEvent = (event) => {
     createItem(event);
-}
+} //Talvez essa função seja desnecessária, posso removelá e utilizar o createItem no seu lugar
 
 dataSubmit.addEventListener("submit", submitEvent);
 
