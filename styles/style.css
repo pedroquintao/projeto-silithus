@@ -99,6 +99,9 @@ body {
   background-color: var(--color-bar-hover);
 }
 
+.highlight {
+  box-shadow: 0 0 3px var(--color-main-title);
+}
 #form-rarity{
   color: var(--color-text-bar);
 }

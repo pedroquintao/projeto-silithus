@@ -13,14 +13,11 @@ const updateEvent = (event) => {
 
 }
 
-let submitButtonMode = "submit";
+let submitButtonMode = true;
 
-export function addUpdateListener(uptadeButton, item) {
-    uptadeButton.addEventListener("click", () => {
-        fillForms(item);
-        toggleSubmitButtonListener(item);
-        toggleHighlightMode(item);
-    });
+export function addUpdateListener(updateButton, item) {
+    updateButton.addEventListener("click", updateButtonClick);
+    updateButton.item = item;
 }
 
 function fillForms(data) {
@@ -32,32 +29,36 @@ function toggleSubmitButtonListener(item) {
     
     const dataSubmit = document.querySelector("[data-submit]"); 
 
-    if(submitButtonMode === "submit") {
+    if(submitButtonMode === true) {
         dataSubmit.removeEventListener("submit", submitEvent);
         dataSubmit.addEventListener("submit", updateEvent)
-        submitButtonMode = "update";
+        submitButtonMode = false;
         submitButton.innerHTML = "<b>Update</b>"
     }
 
-    else if(submitButtonMode === "update") {
+    else if(submitButtonMode === false) {
         dataSubmit.removeEventListener("submit", updateEvent);
         dataSubmit.addEventListener("submit", submitEvent);
-        submitButtonMode = "submit";
+        submitButtonMode = true;
         submitButton.innerHTML = "<b>Register</b>";
+
     }
     dataSubmit.itemData = item;
 }
-function toggleHighlightMode(item) {
+
+const updateButtonClick = (event) => {
+    const item = event.target.item;
+    fillForms(item);
+    toggleSubmitButtonListener(item);
+    event.target.removeEventListener("click", updateButtonClick)
+}
+
+function toggleHighLightMode(item) {
     const itemBar = document.querySelector(`[data-id="${item.id}"]`)
     const formBars = document.querySelectorAll(".form__bar");
     const highlightElements = [itemBar];
     formBars.forEach(element => highlightElements.push(element));
-    console.log('%cupdateItem.js line:55 highlightElements1', 'color: #007acc;', highlightElements);
     highlightElements.forEach(element => element.classList.toggle("highlight"));
-    console.log('%cupdateItem.js line:55 highlightElements2', 'color: #007acc;', highlightElements);
-    highlightElements.forEach(element => element.classList.toggle("highlight"));
-    console.log('%cupdateItem.js line:55 highlightElements3', 'color: #007acc;', highlightElements);
-
 }
 
 async function updateItem(event) {
