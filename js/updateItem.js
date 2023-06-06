@@ -76,9 +76,3 @@ async function updateItem(event) {
     showItems.buildList();
     clearForms();
 }
-
-
-
-
-
-
