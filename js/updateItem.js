@@ -10,9 +10,9 @@ const submitButton = document.getElementById("submit-button");
 const updateEvent = (event) => {
     updateItem(event);
     toggleSubmitButtonListener();
-
 }
 
+let updateMode = false;
 let submitButtonMode = true;
 
 export function addUpdateListener(updateButton, item) {
@@ -47,10 +47,16 @@ function toggleSubmitButtonListener(item) {
 }
 
 const updateButtonClick = (event) => {
+    if(updateMode){
+        console.log('%cupdateItem.js line:51 Mensagem de erro: ', 'color: #007acc;', "Update mode is already on!");
+        return;
+    }
+
+    updateMode = true;
     const item = event.target.item;
     fillForms(item);
     toggleSubmitButtonListener(item);
-    event.target.removeEventListener("click", updateButtonClick)
+    toggleHighLightMode(item);
 }
 
 function toggleHighLightMode(item) {
@@ -75,4 +81,5 @@ async function updateItem(event) {
     await apiRequests.putItem(url, currentFormInputData);    
     showItems.buildList();
     clearForms();
+    updateMode = false;
 }
