@@ -57,6 +57,7 @@ const updateButtonClick = (event) => {
     fillForms(item);
     toggleSubmitButtonListener(item);
     toggleHighLightMode(item);
+    toggleTitleWhenUpdateModeIsOn();
 }
 
 function toggleHighLightMode(item) {
@@ -65,6 +66,10 @@ function toggleHighLightMode(item) {
     const highlightElements = [itemBar];
     formBars.forEach(element => highlightElements.push(element));
     highlightElements.forEach(element => element.classList.toggle("highlight"));
+}
+function toggleTitleWhenUpdateModeIsOn() {
+    document.querySelector("[data-form-title]").innerHTML = `<h1 class="title1" id="item-registration">Update Mode</h1>
+    <p class="paragraph1">Fill in the forms with the data of the item you want to update:</p>`;
 }
 
 async function updateItem(event) {
