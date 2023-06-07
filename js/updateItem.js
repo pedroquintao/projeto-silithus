@@ -12,7 +12,7 @@ const updateEvent = (event) => {
     toggleSubmitButtonListener();
 }
 
-let updateMode = false;
+export let updateMode = false;
 let submitButtonMode = true;
 
 export function addUpdateListener(updateButton, item) {
