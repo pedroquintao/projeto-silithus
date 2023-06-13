@@ -7,6 +7,7 @@ import { clearForms } from "./clearForms.js";
 
 const url = "http://localhost:8080/items";
 const submitButton = document.getElementById("submit-button");
+
 const updateEvent = (event) => {
     updateItem(event);
     toggleSubmitButtonListener();
@@ -18,6 +19,21 @@ let submitButtonMode = true;
 export function addUpdateListener(updateButton, item) {
     updateButton.addEventListener("click", updateButtonClick);
     updateButton.item = item;
+}
+
+const updateButtonClick = (event) => {
+    if(updateMode){
+        console.log('%cupdateItem.js line:51 Mensagem de erro: ', 'color: #007acc;', "Update mode is already on!");
+        return;
+    }
+
+    updateMode = true;
+    const item = event.target.item;
+    fillForms(item);
+    //Talvez dê pra colocar todos esses toggles em uma função só
+    toggleSubmitButtonListener(item);
+    toggleHighLightMode(item);
+    toggleTitleWhenUpdateModeIsOn();
 }
 
 function fillForms(data) {
@@ -46,19 +62,7 @@ function toggleSubmitButtonListener(item) {
     dataSubmit.itemData = item;
 }
 
-const updateButtonClick = (event) => {
-    if(updateMode){
-        console.log('%cupdateItem.js line:51 Mensagem de erro: ', 'color: #007acc;', "Update mode is already on!");
-        return;
-    }
 
-    updateMode = true;
-    const item = event.target.item;
-    fillForms(item);
-    toggleSubmitButtonListener(item);
-    toggleHighLightMode(item);
-    toggleTitleWhenUpdateModeIsOn();
-}
 
 function toggleHighLightMode(item) {
     const itemBar = document.querySelector(`[data-id="${item.id}"]`)
