@@ -1,12 +1,12 @@
 import { apiRequests } from "./requests.js";
 import { showItems } from "./showItems.js";
-import { UPDATE_MODE } from "./updateItem.js";
+import { UPDATE_MODE_ON } from "./updateItem.js";
 
 const url = "http://localhost:8080/items"
 
 async function deleteItem(event, item) {
     event.preventDefault();
-    if(UPDATE_MODE){
+    if(UPDATE_MODE_ON){
         console.log('%cupdateItem.js line:51 Mensagem de erro: ', 'color: #007acc;', "You can't delete itens when update mode is on!");
         return;
     }
