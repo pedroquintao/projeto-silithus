@@ -7,12 +7,15 @@ import { clearForms } from "./clearForms.js";
 
 const url = "http://localhost:8080/items";
 const submitButton = document.getElementById("submit-button");
+const submitData = document.querySelector("[data-submit]"); 
+const formBars = document.querySelectorAll(".form__bar");
+const itemList = document.querySelector(".list__items")
 
 const updateEvent = (event) => {
     updateItem(event);
 }
 
-export let UPDATE_MODE = false;
+export var UPDATE_MODE = false;
 
 export function addUpdateListener(updateButton, item) {
     updateButton.addEventListener("click", updateButtonClick);
@@ -30,15 +33,14 @@ const updateButtonClick = (event) => {
 }
 
 function fillForms(data) {
-    const form = document.querySelectorAll(".form__selection");
-    form.forEach((element, index) => element.value = normalizeWord(Object.values(data)[index + 1])); //Adicionar ao guia.js
+    const formFields = submitData.querySelectorAll(".form__selection");
+    formFields.forEach((element, index) => element.value = normalizeWord(Object.values(data)[index + 1])); //Adicionar ao guia.js
 }
 
 function updateModeSetup(item, state) {
-    const submitData = document.querySelector("[data-submit]"); 
+    
     submitData.itemData = item;
-    const itemBar = document.querySelector(`[data-id="${item.id}"]`)
-    const formBars = document.querySelectorAll(".form__bar");
+    const itemBar = itemList.querySelector(`[data-id="${item.id}"]`)
     const highlightElements = [itemBar];
     formBars.forEach(element => highlightElements.push(element));
 
