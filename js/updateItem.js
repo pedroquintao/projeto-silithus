@@ -41,16 +41,18 @@ function updateModeSetup(item, state) {
             submitData.addEventListener("submit", updateEvent);
             submitButton.innerHTML = "<b>Update</b>";
             document.querySelector("[data-form-title]").innerHTML = '<h1 class="title1" id="item-registration">Update Mode</h1><p class="paragraph1">Fill in the forms with the data of the item you want to update:</p>';
-            highlightElements.forEach(element => element.classList.toggle("highlight"));
-            return UPDATE_MODE_ON = true;
+            highlightElements.forEach(element => element.classList.add("highlight"));
+            UPDATE_MODE_ON = true;
+            break; 
         
         case'off':
             submitData.removeEventListener("submit", updateEvent);
             submitData.addEventListener("submit", submitEvent);
             submitButton.innerHTML = "<b>Register</b>";
             document.querySelector("[data-form-title]").innerHTML = '<h1 class="title1" id="item-registration">Item Registration</h1><p class="paragraph1">Fill in the forms with the data of the item you want to register:</p>';
-            highlightElements.forEach(element => element.classList.toggle("highlight"));
-            return UPDATE_MODE_ON = false;
+            highlightElements.forEach(element => element.classList.remove("highlight"));
+            UPDATE_MODE_ON = false;
+            break; 
     }
 }
 
