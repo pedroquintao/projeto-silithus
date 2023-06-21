@@ -35,13 +35,14 @@
           <!-- Formulário Nome   -->
           <fieldset class="form name">
             <label for="form-name">Name</label><br>
-            <input type="text" class="form__name form__bar form__selection"  id="form-name" data-name>
+            <input name="name" type="text" class="form__name form__bar form__selection"  id="form-name" required data-name>
+            <span class="span__message"></span>
           </fieldset>
 
           <!-- Formulário Slot -->
           <fieldset class="form slot" id="slot">
             <label for="slot">Slot</label><br>
-            <select class="form__bar form__selection" id="form-slot" data-slot>
+            <select name="slot" class="form__bar form__selection" id="form-slot" data-slot>
               <option selected="" disabled="" value="" hidden="">Slot</option>
               <option id="slot-head">Head</option>
               <option id="slot-shoulders">Shoulders</option>
@@ -63,12 +64,13 @@
               <option id="slot-ranged">Ranged </option>
               <option id="slot-relic">Relic</option>
             </select>
+            <span class="span__message"></span>
           </fieldset>  
 
           <!-- Formulário Raridade -->
           <fieldset class="form rarity" id="rarity">
             <label for="rarity">Rarity</label><br>
-              <select class="form-rarity form__bar form__selection" id="form-rarity" data-rarity>
+              <select name="rarity" class="form-rarity form__bar form__selection" id="form-rarity" data-rarity>
               <option selected disabled hidden value="" >Choose rarity</option>
               <option id="rarity-common">Common</option>
               <option id="rarity-uncommon">Uncommon</option>
@@ -76,6 +78,7 @@
               <option id="rarity-epic">Epic</option>
               <option id="rarity-legendary">Legendary</option>
             </select>
+            <span class="span__message"></span>
           </fieldset>
 
           <!-- Formulário Stats -->
@@ -142,6 +145,7 @@
     <script src="./js/createItem.js" type="module"></script>
     <script src="./js/updateItem.js" type="module"></script>
     <script src="./js/deleteItem.js" type="module"></script>
+    <script src="./js/formValidations.js"></script>
 
 
     
