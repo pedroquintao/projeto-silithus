@@ -17,6 +17,7 @@
     --color-submit-button-text: #f7b204;
     --color-submit-button-text-hover: #f7b204;
     --color-bar-hover: #262525;
+    --color-span-error: red;
   }
 
 *{
@@ -84,6 +85,8 @@ body {
 .form{
   border: 0;
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .form__bar{
@@ -104,6 +107,11 @@ body {
 }
 #form-rarity{
   color: var(--color-text-bar);
+}
+.span__message{
+  color: var(--color-span-error);
+  font-size: 0.8em;
+  font-family: var(--standard-font);
 }
 
 .stats{
