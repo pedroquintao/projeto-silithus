@@ -3,7 +3,6 @@ import { clearForms } from "./clearForms.js";
 import { showItems } from "./showItems.js";
 
 const url = "http://localhost:8080/items"
-
 const dataSubmit = document.querySelector("[data-submit]");
 
 export const submitEvent = (event) => {

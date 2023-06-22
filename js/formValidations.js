@@ -1,9 +1,23 @@
 const formFields = document.querySelectorAll('.form__bar');
-const errorMessage = document.querySelector('[data-span-name]')
+
 formFields.forEach(element => {
     element.addEventListener('blur', (event) => fieldVerification(event.target));
-    element.addEventListener('invalid', event => event.preventDefault());
-});
+    const elementTag = element.tagName;
+
+    switch(elementTag){
+        case 'INPUT':
+            element.addEventListener('keypress', (event) => fieldVerification(event.target));
+            break;
+        case 'SELECT' || 'CHECKBOX':
+            element.addEventListener('change', (event) => fieldVerification(event.target));
+            break;
+    }
+
+    element.addEventListener('invalid', (event) => {
+        event.preventDefault();
+        showErrorMessage(element);
+    })}
+);
 
 const errorTypes = [
     'valueMissing',
@@ -27,7 +41,7 @@ const messages = {
     }
 }
 
-function fieldVerification(field) {
+function showErrorMessage(field) {
     let message = '';
     field.setCustomValidity('');
 
@@ -37,13 +51,23 @@ function fieldVerification(field) {
         }
     })
 
+    // const inputValidator = field.checkValidity();
     const spanMessage = field.parentNode.querySelector('.span__message');
-    const inputValidator = field.checkValidity();
 
-    if(!inputValidator) {
+    // if(!inputValidator) {
         spanMessage.textContent = message;
+    // }
+    // else {
+        // spanMessage.textContent = '';
+//     }
+}
+
+function fieldVerification(field) {
+    if(!field.checkValidity()) {
+        showErrorMessage(field);
     }
     else {
+        const spanMessage = field.parentNode.querySelector('.span__message');
         spanMessage.textContent = '';
     }
 }
